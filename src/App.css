@@ -1,0 +1,287 @@
+
+/* Apply scroll snapping to the container of your sections */
+html {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scroll-snap-type: y mandatory; 
+  scroll-behavior: smooth;/* Enable mandatory snapping on the y-axis */
+}
+
+/* Define the behavior for each section */
+section {
+  scroll-snap-align: center;
+  height: 100vh; /* Snap the start of each section to the top of the container */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+.section-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.explore-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.stars-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding-top: 50px;
+}
+
+.explore-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  text-align: center;
+  color: #34344D;
+}
+
+
+
+.RPS-heading {
+  text-align: center;
+  color: black; /* Ensure text is visible against the background */
+  position: relative; /* Add position relative */
+  z-index: 2; /* Ensure heading appears above the video background */
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+
+.RPS {
+  margin-top: 70px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly; /* Distribute items evenly along the main axis */
+  align-items: center; /* Center items vertically */
+}
+
+.RPS-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Needed for positioning pseudo-element */
+}
+
+.RPS-items:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(50% - 165px); /* Adjust the position of the line */
+  border-right: 2px solid #34344d4d; /* Adjust the style and color of the line */
+}
+
+.RPS-names{
+  margin-top: 10px;
+  font-family: Work Sans;
+  font-weight: 500;
+}
+.RPS-logos {
+  border-radius: 100%;
+  height: 150px;
+  width: 150px;
+}
+
+
+.categories {
+  padding: 0px 80px 0px 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cat-heading{
+  text-align: center;
+  font-size: 25px;
+  font-family:Work Sans;
+  padding-bottom: 35px;
+  position: relative; /* Position the lines relative to the heading */
+
+}
+
+
+.cat-heading::before,
+.cat-heading::after {
+  content: ''; /* Empty content */
+  position: absolute; /* Position the lines */
+  top: 30%; /* Position the lines in the middle vertically */
+  width: 70%; /* Adjust the width of the lines */
+  height: 1px; /* Adjust the thickness of the lines */
+  background-color:#34344D; /* Color of the lines */
+}
+
+.cat-heading::before {
+  left: 0; 
+  transform: translate(-50%, -50%); 
+}
+
+.cat-heading::after {
+  right: 0; 
+  transform: translate(50%, -50%);
+}
+
+.--catitems {
+  padding: 0px 40px 0px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 100%;
+}
+
+.--catitems:hover{
+  border-color: #34344D;
+  color: #34344D;
+}
+
+.--catnames{
+  color: #9EADCF;
+  font-family:Work Sans ;
+  font-weight: 500;
+  font-size: 15px;
+}
+.--catitems:hover .--catlogos,
+.--catitems:hover .--catnames {
+  color:#34344D; 
+}
+
+
+.--catlogos {
+  border-radius: 1000px;
+  color: #9EADCF;
+  font-size: 80px;
+}
+
+.--catlogos:hover{
+  transition: color 200ms ease, font-size 200ms ease, box-shadow 200ms ease;
+  color: #34344D;
+  font-size: 100px;
+  box-shadow: 0px 0px 4px #9eadcf82, /* top */
+                0px 4px 4px  #9EADCF82, /* bottom */
+                4px 0px 4px  #9EADCF82, /* right */
+                -4px 0px 4px  #9EADCF82; /* left */
+  transform: translateY(-5%); 
+
+}
+
+
+/* about section */
+#about-section{
+  background-color: white;
+  color:#1d1d2b;
+}
+
+.about-us{
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-self:center ;
+  text-align: center;
+
+  h2{
+    font-family: Work Sans;
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
+
+.about-content {
+ align-self: center; 
+ font-size: 20px;
+ text-align: justify;
+ padding: 20px;
+ font-family: Merriweather;
+  
+ ul{
+  list-style-type: none;
+ }
+}
+
+.about-content li:before {
+  content: "★"; /* Unicode character for a solid star */
+  display: inline-block;
+  margin-right: 10px; /* Adjust spacing between marker and text */
+}
+
+
+.member-heading {
+  padding: 10px;
+  font-size: 25px;
+  text-align: center;
+  font-family: Work Sans;
+  position: relative; /* Position the lines relative to the heading */
+  text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5); /* Add text shadow */
+
+}
+
+.member-heading::before,
+.member-heading::after {
+  content: ''; /* Empty content */
+  position: absolute; /* Position the lines */
+  top: 50%; /* Position the lines in the middle vertically */
+  width: 70%; /* Adjust the width of the lines */
+  height: 1px; /* Adjust the thickness of the lines */
+  background-color:white; /* Color of the lines */
+}
+
+.member-heading::before {
+  left: 0; /* Position the line on the left */
+  transform: translate(-50%, -50%); /* Move the line to the left */
+}
+
+.member-heading::after {
+  right: 0; /* Position the line on the right */
+  transform: translate(50%, -50%); /* Move the line to the right */
+}
+
+
+.member-pic{
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+ }
+
+.members{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.member-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Merriweather;
+
+  h2{
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  h3{
+    font-weight: 350;
+    font-size: 18px;
+  }
+}
+
+
+
+

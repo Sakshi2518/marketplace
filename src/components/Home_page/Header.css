@@ -1,0 +1,61 @@
+.navbar {
+    padding: 10px 15px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.265);
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+  }
+  
+  .navbar-heading{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  
+  .navbar h4,
+  .explore,
+  .about,
+  .contact {
+    color: black;
+  }
+  
+  
+  
+  .nav-search {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px;
+  }
+  
+  #searchbox {
+    border: none;
+    padding: 5px;
+    width: 400px;
+  }
+  
+  .nav-search>i {
+    margin-right: 5px;
+  }
+  
+  .nav-icons {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nav-icons>i {
+    padding-right: 20px;
+    font-size: 28px;
+  }
+  
+  .navbar img,
+  .navbar .fas {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+  }

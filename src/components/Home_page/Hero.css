@@ -1,0 +1,45 @@
+a{
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Work Sans;
+    color: black;
+  }
+  
+  
+  .--landingpg {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+  }
+  
+  
+  .rocketvideo {
+    width: 70%;
+    height: 100vh;
+    object-fit: cover;
+    border: none;
+  }
+  
+  .hero-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .landing-content {
+    font-family: Klee One;
+    position: absolute;
+    top: 50%;
+    right: 50px; /* Adjust as needed */
+    margin-top:150px;
+    font-size: 30px;
+    max-width: 550px;
+  
+    h3{
+      padding-top: 10px;
+      font-size: 20px;
+    }
+  }
