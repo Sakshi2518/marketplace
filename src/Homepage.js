@@ -17,7 +17,7 @@ import './components/Home_page/Team.css';
 
 export default function Homepage() {
   return(
-    <div>
+    <div> 
       <Header/>
       <section><Hero/></section>
       <section><Hero2/></section>
