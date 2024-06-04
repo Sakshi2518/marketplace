@@ -31,7 +31,7 @@ export default function Hero2() {
         </div>
       </div>
       <div className="cat-heading">
-      <span>Choose a category to shop</span>
+      <span>Choose a category</span>
       </div>
       <div className="categories">
          <div className="--catitems">
