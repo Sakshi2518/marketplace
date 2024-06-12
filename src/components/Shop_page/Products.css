@@ -1,0 +1,9 @@
+.search-filter-section{
+    margin-top: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.prod-img{
+    object-fit: cover;
+}
