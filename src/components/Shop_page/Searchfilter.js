@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Searchfilter.css'; 
 import Buttons from './Buttons';
+import Sortdd from './Sortdd';
 
 function Searchfilter({ handleFilter }) {
   const [activeButton, setActiveButton] = useState('All Products');
@@ -56,6 +57,7 @@ function Searchfilter({ handleFilter }) {
           active={activeButton === 'Others'}
         />
       </div>
+      <Sortdd/>
     </div>
   );
 }

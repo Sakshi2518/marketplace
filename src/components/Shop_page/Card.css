@@ -11,7 +11,7 @@
 
 .shop-section-align{
     margin: 0px;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .product-align{
@@ -19,6 +19,7 @@
     flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box; 
+    margin-left: 80px;
 }
 
 .shop-section {
