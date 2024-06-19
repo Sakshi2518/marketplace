@@ -12,7 +12,7 @@ function Sortdd({ sortingValue, setSortingValue }) {
       
       <form action='#'>
         <label htmlFor='sort' className='sort-label'></label>
-        <select
+         <select
           name='sort'
           id='sort'
           className='sort_section'
@@ -25,6 +25,7 @@ function Sortdd({ sortingValue, setSortingValue }) {
           <option value="a-z">Item: A-Z</option>
           <option value="z-a">Item: Z-A</option>
         </select>
+
       </form>
     </div>
   );

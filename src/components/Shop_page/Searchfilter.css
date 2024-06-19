@@ -35,9 +35,13 @@
     font-family: Merriweather;
 
 }
-.sort-section{
+.sort-filter-section{
     display: flex;
 }
+.sort-btn{
+    margin: 50px 10px 0px 150px;
+}
+
 .sort-section select{
     font-size: 0.9rem;
     font-family: Merriweather;
