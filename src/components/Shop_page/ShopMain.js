@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import Header from '../Home_page/Header';
-import Navigation from "./Navigation";
+import Navigation from './Navigation';
 import Searchfilter from './Searchfilter';
 import prodData from '../Alldata/prodData';
-import "./Card.css";
+import './Card.css';
+import './Searchfilter.css';
+
 import Card from './Card';
+import Sortdd from './Sortdd';
 
 function ShopMain() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [query, setQuery] = useState("");
-  const [sortingValue, setSortingValue] = useState("lowest");
+  const [query, setQuery] = useState('');
+  const [sortingValue, setSortingValue] = useState('lowest');
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
 
@@ -20,24 +23,24 @@ function ShopMain() {
   };
 
   const sortingProducts = (a, b) => {
-    if (sortingValue === "Newly added") {
+    if (sortingValue === 'Newly added') {
       const dateA = new Date(a.dateOfProd).getTime();
       const dateB = new Date(b.dateOfProd).getTime();
       return dateB - dateA; // Sort in descending order (latest date first)
     }
-    if (sortingValue === "lowest") {
+    if (sortingValue === 'lowest') {
       return a.price - b.price;
     }
-    if (sortingValue === "highest") {
+    if (sortingValue === 'highest') {
       return b.price - a.price;
     }
-    if (sortingValue === "a-z") {
+    if (sortingValue === 'a-z') {
       return a.prod_name.localeCompare(b.prod_name);
     }
-    if (sortingValue === "z-a") {
+    if (sortingValue === 'z-a') {
       return b.prod_name.localeCompare(a.prod_name);
     }
-   
+
     return 0;
   };
 
@@ -45,7 +48,7 @@ function ShopMain() {
     product.prod_name && product.prod_name.toLowerCase().includes(query.toLowerCase())
   );
 
-  function filteredData(products, selected, query) {
+  const filteredData = (products, selected, query) => {
     let filteredProducts = products;
 
     if (query) {
@@ -53,15 +56,11 @@ function ShopMain() {
     }
 
     if (selected) {
-      filteredProducts = filteredProducts.filter(
-        ({ category}) =>
-          category === selected 
-          
-      );
+      filteredProducts = filteredProducts.filter(({ category }) => category === selected);
     }
 
     return filteredProducts;
-  }
+  };
 
   const filteredAndSortedProducts = filteredData(prodData, selectedCategory, query).sort(sortingProducts);
 
@@ -69,12 +68,16 @@ function ShopMain() {
     <div>
       <Header />
       <Navigation query={query} handleInputChange={handleInputChange} />
-      <Searchfilter
-        handleFilter={handleFilter}
-        setSortingValue={setSortingValue} 
-      />
-      <div className='shop-section-align'>
-        <div className='product-align'>
+      <div className='sort-filter-section'>
+      <Searchfilter handleFilter={handleFilter} setSortingValue={setSortingValue} />
+      <div className='sort-btn'>
+      <Sortdd sortingValue={sortingValue} setSortingValue={setSortingValue}/>
+      </div>
+     
+      </div>
+      
+      <div className="shop-section-align">
+        <div className="product-align">
           {filteredAndSortedProducts.map((item) => (
             <Card key={item.id} item={item} />
           ))}
