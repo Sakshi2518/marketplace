@@ -1,5 +1,7 @@
 import React from "react"
 import user from "../../images/user.svg"
+import { Link } from "react-router-dom";
+
 
 
 export default function Header(){
@@ -10,7 +12,7 @@ export default function Header(){
 
     <div className="navbar-heading">
     <div className="explore">
-        <a href="#explore-section"><span>Shop</span></a>
+     <Link to="/shop"><span>Shop</span></Link>
     </div>
     <div className="about">
         <a href="#about-section"><span>About</span></a>
