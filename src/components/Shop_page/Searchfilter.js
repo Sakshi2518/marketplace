@@ -7,8 +7,8 @@ function Searchfilter({ handleFilter }) {
   const [activeButton, setActiveButton] = useState('All Products');
 
   const handleButtonClick = (value) => {
-    setActiveButton(value); // Set the active button value
-    handleFilter(value); // Pass the value to parent component
+    setActiveButton(value); 
+    handleFilter(value); 
   };
 
   return (

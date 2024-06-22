@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./Card.css";
 
 const Card = ({ item }) => {
-  const { id, imgUrl, prod_name, price, delivery } = item;
+  const { id, imgUrl, prod_name, price, delivery, origPrice } = item;
 
   return (
     <Link to={`/product/${id}`} className="product-link">
@@ -13,8 +13,9 @@ const Card = ({ item }) => {
         </div>
 
         <div className="prod-content">
+          
           <h3 className="prod-title">{prod_name}</h3>
-          <h4 className="prod-price">Rs.{price}.00</h4>
+          <div className="prod-price">Rs.{price}.00<div className='orig-price'>Rs.{origPrice}</div></div>
 
           <div className="prod-delivery">
             <span className="prod-deliveryby">

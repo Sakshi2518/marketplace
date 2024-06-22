@@ -33,6 +33,18 @@
 
 }
 
+.prod-price{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.orig-price{
+    text-decoration: line-through !important;
+    font-size: small;
+    color: gray;
+
+}
+
 .product-section {
     background-color: black;
     display: flex;
