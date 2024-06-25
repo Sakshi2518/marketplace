@@ -54,14 +54,27 @@
   margin: 5px;
   border-radius: 200px 20px 200px 20px;
   box-shadow: 0px 0px 5px 5px #d8d8d986;
+
+  /* flex: 2 1 400px;
+  min-width: 300px; */
+  display: flex;
+  flex-direction: column;
 }
 .prod-description h1 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 45px;
   font-style: normal;
   line-height: 1.5cap;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
+}
+.prod-description .delivery{
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: medium;
 }
 .prod-description h3 {
   color: rgba(0, 0, 0, 0.696);
@@ -73,6 +86,7 @@
   font-weight: 350;
   font-style: normal;
   color: #4f6782ef;
+  margin: 2px;
 }
 .prod-description p strong {
   color: rgba(0, 0, 0, 0.696);
@@ -82,10 +96,37 @@
   border: 0;
   border-top: 2px solid;
   color: #b3a5a538;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
-.prod-description button.add-to-cart {
+/* .prod-details {
+  flex: 1 1 100%;
+  margin-bottom: 5px;
+} */
+
+.price-row{
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.price-value {
+  font-size: 1.5em;
+}
+
+
+.price-row .original-price {
+  /* color: red; */
+  text-decoration: line-through !important;
+  /* margin-left: 2px; */
+  font-size: 20px;
+}
+
+.price-row button.add-to-cart {
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   display: flex;
@@ -94,15 +135,16 @@
   background-color: rgba(0, 0, 0, 0.76);
   color: white;
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 10px;
+  margin-left: 30px;
 }
 
-.prod-description button.add-to-cart svg {
+.price-row button.add-to-cart svg {
   margin-left: 15px;
 }
 
-.prod-description button.add-to-cart:hover {
+.price-row button.add-to-cart:hover {
   cursor: pointer;
 }
 
@@ -116,27 +158,32 @@
   cursor: pointer;
   text-decoration: underline;
 }
-.toggle-description-small {
-  font-size: 0.8em;
-}
+
 .description-text {
   word-wrap: break-word; /* Ensure text wraps within the container */
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .single-product {
-    flex-direction: column; /* Stack items vertically on smaller screens */
+    flex-direction: column;
     align-items: center;
   }
 
   .prod-images {
-    margin-right: 0; /* Remove right margin for smaller screens */
-    margin-bottom: 20px; /* Add bottom margin for spacing */
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 
   .prod-description {
-    margin: 10 px;
-    width: 90%; /* Full width for the description on smaller screens */
+    width: 100%;
   }
+
+  .price-row {
+    width: 100%;
+  }
+
+  /* .price-row {
+    flex-direction: column;
+    align-items: flex-start;
+  } */
 }
