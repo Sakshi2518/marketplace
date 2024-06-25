@@ -43,6 +43,8 @@ const prodData = [
         dimensions: "20*15 cm",
         material: "paperback cover", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 100,
         description: "Comprehensive guide on data structures with numerous examples and exercises.",
     },
     {
@@ -57,7 +59,9 @@ const prodData = [
         origPrice: 2500,
         dimensions: "N/A",
         material: "N/A", 
-        rentavailibility: "Not applicable",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "In-depth course on Data Structures and Algorithms in Python by Coding Ninjas.",
     },
     {
@@ -73,6 +77,8 @@ const prodData = [
         dimensions: "30*10 cm",
         material: "plastic and metal", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 100,
         description: "Energy-efficient and durable lamp from Philips, ideal for study and work.",
     },
     {
@@ -87,7 +93,9 @@ const prodData = [
         origPrice: 800,
         dimensions: "25*5 cm",
         material: "non-stick coated metal", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "High-quality non-stick frying pan perfect for all your cooking needs.",
     },
     {
@@ -103,6 +111,8 @@ const prodData = [
         dimensions: "50*50*100 cm",
         material: "fabric and metal", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 200,
         description: "Ergonomic high back office chair with adjustable height and lumbar support.",
     },
     {
@@ -117,7 +127,9 @@ const prodData = [
         origPrice: 900,
         dimensions: "15*15 cm",
         material: "galvanized metal", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Stylish metal flower pot, perfect for indoor and outdoor plants.",
     },
     {
@@ -134,6 +146,8 @@ const prodData = [
         dimensions: "22*15 cm",
         material: "paperback cover", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 150,
         description: "Comprehensive guide on basic electrical engineering concepts.",
     },
     {
@@ -141,7 +155,7 @@ const prodData = [
         category: "Books",
         condition: "New",
         acc_rating: 60,
-        prod_name: "Fundamental Engineering Mathematics",
+        prod_name: "Fundamental Mathematics",
         imgUrl: img08_pr,
         delivery: "10 July",
         price: 550,
@@ -150,6 +164,8 @@ const prodData = [
         dimensions: "23*16 cm",
         material: "hardcover", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 250,
         description: "Fundamental concepts of engineering mathematics with solved examples.",
     },
     {
@@ -166,6 +182,8 @@ const prodData = [
         dimensions: "24*17 cm",
         material: "paperback cover", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 200,
         description: "All-inclusive guide on digital electronics, covering basics to advanced topics.",
     },
     {
@@ -182,6 +200,8 @@ const prodData = [
         dimensions: "25*18 cm",
         material: "paperback cover", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 180,
         description: "Introduction to basic mechanical engineering concepts with practical applications.",
     },
     {
@@ -198,6 +218,8 @@ const prodData = [
         dimensions: "26*19 cm",
         material: "hardcover", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 300,
         description: "Comprehensive textbook on artificial intelligence for B.Tech students.",
     },
     {
@@ -213,7 +235,9 @@ const prodData = [
         dateOfProd: "2023-03-18",
         dimensions: "30*30 cm",
         material: "glass and plastic", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "High-efficiency 2100W electric induction cooktop from Philips.",
     },
     {
@@ -230,6 +254,8 @@ const prodData = [
         dimensions: "20*20 cm",
         material: "stainless steel", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 300,
         description: "Durable and quick heating 1.5L electric kettle from Bajaj.",
     },
     {
@@ -245,7 +271,9 @@ const prodData = [
         dateOfProd: "2023-02-10",
         dimensions: "10*10 cm",
         material: "plastic", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Compact and powerful electric hand blender from Philips.",
     },
     {
@@ -261,7 +289,9 @@ const prodData = [
         dateOfProd: "2023-03-01",
         dimensions: "15*5 cm",
         material: "ceramic", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Professional-grade flat iron hair straightener for smooth and shiny hair.",
     },
     {
@@ -277,7 +307,9 @@ const prodData = [
         dateOfProd: "2023-03-18",
         dimensions: "20*10 cm",
         material: "wood", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Organize your desk with this stylish wooden desk organizer.",
     },
     {
@@ -294,6 +326,8 @@ const prodData = [
         dimensions: "10*10 cm",
         material: "plastic", 
         rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Experience wireless freedom with Boat's high-quality headphones.",
     },
     {
@@ -310,6 +344,8 @@ const prodData = [
         dimensions: "40*30 cm",
         material: "wood and metal", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 300,
         description: "Compact and foldable study table, perfect for small spaces.",
     },
     {
@@ -326,6 +362,8 @@ const prodData = [
         dimensions: "50*30 cm",
         material: "wood", 
         rentavailibility: "Available for rent",
+        duration: "1 year",
+        rentprice: 400,
         description: "Convenient study table designed for use on the bed.",
     },
     {
@@ -342,6 +380,8 @@ const prodData = [
         dimensions: "60*60 cm",
         material: "teak wood", 
         rentavailibility: "Available for rent",
+        duration: "3 months",
+        rentprice: 200,
         description: "Comfortable chair with a teak finish, perfect for home offices.",
     },
     {
@@ -358,6 +398,8 @@ const prodData = [
         dimensions: "40*60 cm",
         material: "teak wood", 
         rentavailibility: "Available for rent",
+        duration: "6 months",
+        rentprice: 500,
         description: "Stylish and compact mini cupboard from TeakLab.",
     },
     {
@@ -389,7 +431,9 @@ const prodData = [
         dateOfProd: "2022-11-25",
         dimensions: "25*10 cm",
         material: "stainless steel", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Durable 500ml thermos flask for keeping drinks hot or cold.",
     },
     {
@@ -405,7 +449,9 @@ const prodData = [
         dateOfProd: "2023-03-01",
         dimensions: "30*20 cm",
         material: "stainless steel", 
-        rentavailibility: "Available for rent",
+        rentavailibility: "Not available for rent",
+        duration: "",
+        rentprice: "",
         description: "Large 4L thermos, perfect for keeping beverages hot or cold for hours.",
     },
 ];
