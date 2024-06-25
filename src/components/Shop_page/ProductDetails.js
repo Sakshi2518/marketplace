@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import prodData from "../Alldata/prodData";
 import "./ProductDetails.css";
@@ -8,6 +8,8 @@ import { FaShoppingCart } from "react-icons/fa";
 const ProductDetails = () => {
   const { id } = useParams();
   const product = prodData.find((p) => p.id === parseInt(id));
+  
+
 
   const [mainImage, setMainImage] = useState(product.imgUrl);
   const [clickedImage, setClickedImage] = useState(product.imgUrl);
@@ -27,7 +29,7 @@ const ProductDetails = () => {
   
   const truncatedDescription = product.description.substring(0, 70) + "...";
 
-  const handleAddToCart = () => {
+  const handleAddToCartButton = () => {
     alert(`${product.prod_name} has been added to your cart!`);
   };
 
@@ -53,18 +55,10 @@ const ProductDetails = () => {
         </div>
         <div className="prod-description">
           <h1 className="product-name">{product.prod_name}</h1>
-        
+          <p className="delivery">Delivery: {product.delivery}</p>
+
           <p>
             <strong>User rating:</strong> {product.acc_rating}
-          </p>
-          <p>
-            <strong>Price:</strong> {product.price}
-          </p>
-          <p>
-            <strong>Original Price:</strong> <del>{product.origPrice}</del>
-          </p>
-          <p>
-            <strong>Delivery:</strong> {product.delivery}
           </p>
           <p>
             <strong>Category:</strong> {product.category}
@@ -84,12 +78,28 @@ const ProductDetails = () => {
             </span>
           </p>
           <hr />
+          
+            <div className="price-row">
+              <div className="price">
+                <strong>Price:</strong>{" "}
+                <span className="price-value">{product.price}</span>
+              </div>
+              <div className="original-price">
+                <span className="original-price-value">
+                  (<del>{product.origPrice}</del>)
+                </span>
+              </div>
+              <button className="add-to-cart" onClick= {handleAddToCartButton}>
+                Add to Cart <FaShoppingCart />
+              </button>
+            </div>
+          
           <p>
             <strong>Available for rent?</strong> {product.rentavailibility}
           </p>
-          <button className="add-to-cart" onClick={handleAddToCart}>
+          {/* <button className="add-to-cart" onClick={handleAddToCart}>
             Add to Cart <FaShoppingCart />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
