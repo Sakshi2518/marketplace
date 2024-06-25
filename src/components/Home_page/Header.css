@@ -40,7 +40,7 @@
   }
   
   .nav-search>i {
-    margin-right: 5px;
+    margin-right: 8px;
   }
   
   .nav-icons {
@@ -59,3 +59,18 @@
     height: 24px;
     margin-left: 10px;
   }
+
+  .cart-link{
+    padding-right: 10px;
+  }
+  .cart-count {
+    position: absolute;
+    top: 1px;
+    right: 50px;
+    background-color:#9eadcf;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  
