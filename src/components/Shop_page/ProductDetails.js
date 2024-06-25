@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import prodData from '../Alldata/prodData';
-import './ProductDetails.css';
-import Header from '../Home_page/Header';
+import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import prodData from "../Alldata/prodData";
+import "./ProductDetails.css";
+import Header from "../Home_page/Header";
+import { FaShoppingCart } from "react-icons/fa";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -10,50 +11,85 @@ const ProductDetails = () => {
 
   const [mainImage, setMainImage] = useState(product.imgUrl);
   const [clickedImage, setClickedImage] = useState(product.imgUrl);
-
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  
 
   if (!product) {
     return <div>Product not found</div>;
   }
-
   const handleImageClick = (imgUrl) => {
     setMainImage(imgUrl);
     setClickedImage(imgUrl);
+  };
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+  
+  const truncatedDescription = product.description.substring(0, 70) + "...";
+
+  const handleAddToCart = () => {
+    alert(`${product.prod_name} has been added to your cart!`);
   };
 
   return (
     <div>
       <Header />
-      <div className='single-product'>
-        <div className='prod-images'>
-          <div className='main-image'>
+      <div className="single-product">
+        <div className="prod-images">
+          <div className="main-image">
             <img src={mainImage} alt={product.prod_name} />
           </div>
-          <div className='alt-images'>
+          <div className="alt-images">
             {product.altImages.map((imgUrl, index) => (
               <img
                 key={index}
                 src={imgUrl}
                 alt={`${product.prod_name} ${index + 1}`}
                 onClick={() => handleImageClick(imgUrl)}
-                className={clickedImage === imgUrl ? 'clicked' : ''}
-                
+                className={clickedImage === imgUrl ? "clicked" : ""}
               />
             ))}
           </div>
         </div>
-        <div className='prod-description'>
-          <h1>{product.prod_name}</h1>
-          <p>User rating:{product.acc_rating} </p>
-          <p>Price: {product.price}</p>
-          <p>orig price del {product.origPrice}</p>
-          <p>Delivery: {product.delivery}</p>
-          <p>Category: {product.category}</p>
-          <p>Dimensions : {product.dimensions}</p>
-          <p>Material: {product.material}</p>
-          <p>{product.description}</p>
-          <p>Available for rent? {product.rentavailibility}</p>
-          
+        <div className="prod-description">
+          <h1 className="product-name">{product.prod_name}</h1>
+        
+          <p>
+            <strong>User rating:</strong> {product.acc_rating}
+          </p>
+          <p>
+            <strong>Price:</strong> {product.price}
+          </p>
+          <p>
+            <strong>Original Price:</strong> <del>{product.origPrice}</del>
+          </p>
+          <p>
+            <strong>Delivery:</strong> {product.delivery}
+          </p>
+          <p>
+            <strong>Category:</strong> {product.category}
+          </p>
+          <p>
+            <strong>Dimensions:</strong> {product.dimensions}
+          </p>
+          <p>
+            <strong>Material:</strong> {product.material}
+          </p>
+          <hr />
+          <h3>Description</h3>
+          <p>
+            {showFullDescription ? product.description : truncatedDescription}
+            <span onClick={toggleDescription} className="toggle-description">
+              {showFullDescription ? " Read Less" : " Read More"}
+            </span>
+          </p>
+          <hr />
+          <p>
+            <strong>Available for rent?</strong> {product.rentavailibility}
+          </p>
+          <button className="add-to-cart" onClick={handleAddToCart}>
+            Add to Cart <FaShoppingCart />
+          </button>
         </div>
       </div>
     </div>
