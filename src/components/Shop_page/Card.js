@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Card.css';
 import { CartContext } from '../Cart_page/CartProvider';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ item }) => {
   const { id, imgUrl, prod_name, price, delivery, origPrice } = item;
@@ -41,7 +42,6 @@ const Card = ({ item }) => {
           {existingItem ? "Added to Cart" : "Add to Cart"}
         </button>
       </div>
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 };

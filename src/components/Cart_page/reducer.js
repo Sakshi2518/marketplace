@@ -20,7 +20,6 @@ export const reducer = (state, action) => {
           };
         }
   
-      // Handle other actions like REMOVE_FROM_CART, UPDATE_CART, etc.
   
       default:
         return state;
