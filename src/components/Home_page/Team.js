@@ -1,5 +1,9 @@
 import React from "react";
 import user from "../../images/user.svg"
+import rentIcon from "../../images/rent_icon.png"
+import buy from "../../images/buy.png"
+import sell from "../../images/sell.png"
+import dell from "../../images/delivery.png"
 
 
 export default function Team(){
@@ -9,10 +13,10 @@ export default function Team(){
                 <h2>What we offer</h2>
                 <div className="about-content">
                 <ul>
-                  <li>Buy second hand items from your peers at reasonable price</li>
-                  <li>Rent items for a specific period of time as per your requirement</li>
-                  <li>Sell your old items that may come in use to other students</li>
-                  <li>Collect all the products in the college itself hence no delivery costs</li>
+                  <li><img className="im2" src={sell}/>Buy second hand items from your peers at reasonable price</li>
+                  <li><img className="im2" src={rentIcon}/>Rent items for a specific period of time as per your requirement</li>
+                  <li><img className="im2" src={buy}/>Sell your old items that may come in use to other students</li>
+                  <li><img className="im2" src={dell}/>Collect all the products in the college itself hence no delivery costs</li>
                 </ul>
                 </div>
             </div>
