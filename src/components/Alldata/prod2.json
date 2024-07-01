@@ -1,0 +1,15 @@
+[
+    {
+        "category": "Courses",
+        "condition": "New",
+        "acc_rating": 120,
+        "prod_name": "DSA in Python- Coding Ninjas",
+        "imgUrl": "img02_pr",
+        "delivery": "by 26 June",
+        "price": 1999,
+        "origPrice": 2500,
+        "dimensions": "N/A",
+        "material": "N/A", 
+        "description": "In-depth course on Data Structures and Algorithms in Python by Coding Ninjas."
+    }
+]

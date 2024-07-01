@@ -1,0 +1,15 @@
+[
+    {
+        "category": "Utensils",
+        "condition": "Used - Acceptable",
+        "acc_rating": 50,
+        "prod_name": "Utopia Non Stick Frying Pan",
+        "imgUrl": "img04_pr",
+        "delivery": "by 22 June",
+        "price": 499,
+        "origPrice": 800,
+        "dimensions": "25*5 cm",
+        "material": "non-stick coated metal", 
+        "description": "High-quality non-stick frying pan perfect for all your cooking needs."
+    }
+]

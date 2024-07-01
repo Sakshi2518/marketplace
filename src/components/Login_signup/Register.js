@@ -1,62 +1,58 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Register() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Register() {
+  const history = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const registerUser = async (event) => {
-    event.preventDefault();
+  async function submit(e) {
+    e.preventDefault();
+
     try {
-      const response = await axios.post('http://localhost:4000/register', {
-        username,
+      const response = await axios.post("http://localhost:4000/register", {
         email,
         password,
       });
-      console.log('Registration response:', response.data);
-      // Handle successful registration, e.g., show a success message or redirect
+
+      if (response.data === "exist") {
+        alert("User already exists");
+      } else if (response.data === "notexist") {
+        history.push("/home", { state: { id: email } });
+      }
     } catch (error) {
-      console.error('Registration failed:', error);
-      // Handle error, e.g., show an error message
+      alert("Registration failed. Please check your details and try again.");
+      console.error("Registration error:", error);
     }
-  };
+  }
 
   return (
-    <div className="mt-4 grow flex items-center justify-around">
-      <div className="mb-64">
-        <h1 className="text-4xl text-center mb-4">Register</h1>
-        <form className="max-w-md mx-auto" onSubmit={registerUser}>
-          <input
-            type="text"
-            placeholder="John Doe"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="your@email.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <button type="submit" className="primary">
-            Register
-          </button>
-          <div className="text-center py-2 text-gray-500">
-            Already a member?{' '}
-            <Link className="underline text-black" to={'/login'}>
-              Login
-            </Link>
-          </div>
-        </form>
-      </div>
+    <div className="login">
+      <h1>Signup</h1>
+      <form onSubmit={submit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <br />
+      <p>OR</p>
+      <br />
+      <Link to="/login">Login Page</Link>
     </div>
   );
 }
+
+export default Register;
