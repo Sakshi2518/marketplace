@@ -1,11 +1,14 @@
 import React from "react"
 import user from "../../images/user.svg"
 import { Link } from "react-router-dom";
-
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header(){
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
     return(
+
     <nav className="navbar">
         <a href="home-section"><h3>MARKETPLACE</h3></a>
     
@@ -22,18 +25,23 @@ export default function Header(){
     </div>
     </div>
   
-    
-
-        {/* <div className="nav-search">
-        <input type="text" id="searchbox" value="Search for an item"></input>
-        <i className="fa fa-search"></i>
-        </div> */}
-
-        <div className="nav-icons">
+    <div className="nav-icons">
         <i className="fa fa-shopping-cart fa-lg"></i>
-        <img src={user} alt="user-logo" />
-        </div>
         
+       
+       
+  <div className="auth-button-container">
+            {isAuthenticated ? (
+                <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                    Logout
+                </button>
+            ) : (
+                <button className="auth-button" onClick={() => loginWithRedirect()}>
+                    Login
+                </button>
+            )}
+        </div>
+        </div>
         
     </nav>
             

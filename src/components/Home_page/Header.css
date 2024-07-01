@@ -59,3 +59,28 @@
     height: 24px;
     margin-left: 10px;
   }
+  .auth-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #0056b3;
+}
+
+.auth-button:focus {
+    outline: none;
+}
