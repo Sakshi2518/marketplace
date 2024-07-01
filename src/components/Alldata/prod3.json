@@ -1,0 +1,15 @@
+[
+    {
+        "category": "Electronics",
+        "condition": "Used - Good",
+        "acc_rating": 75,
+        "prod_name": "Ecolink Lamp By Philips",
+        "imgUrl": "img03_pr",
+        "delivery": "by 30 June",
+        "price": 1299,
+        "origPrice": 1500,
+        "dimensions": "30*10 cm",
+        "material": "plastic and metal", 
+        "description": "Energy-efficient and durable lamp from Philips, ideal for study and work."
+    }
+]

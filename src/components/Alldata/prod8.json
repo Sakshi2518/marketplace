@@ -1,0 +1,19 @@
+[
+    {
+        "category": "Books",
+        "condition": "New",
+        "acc_rating": 60,
+        "prod_name": "Fundamental Mathematics",
+        "imgUrl": "img08_pr",
+        "delivery": "10 July",
+        "price": 550,
+        "origPrice": 750,
+        "dateOfProd": "2023-01-10",
+        "dimensions": "23*16 cm",
+        "material": "hardcover", 
+        "rentavailibility": "Available for rent",
+        "duration": "1 year",
+        "rentprice": 250,
+        "description": "Fundamental concepts of engineering mathematics with solved examples."
+    }
+]

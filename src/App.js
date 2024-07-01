@@ -8,9 +8,8 @@ import { CartProvider, Cart } from './components/Cart_page/CartProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 import Register from './components/Login_signup/Register';
-import axios from 'axios';
-
-axios.defaults.baseURL = "http://localhost:4000"; 
+import Login from './components/Login_signup/Login';
+import AddProduct from './components/AddProduct/AddProduct';
 
 
 function App() {
@@ -20,10 +19,14 @@ function App() {
         <CartProvider>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/shop" element={<ShopMain />} />
+            <Route path="/products/get" element={<ShopMain />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/shop/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/addproduct" element={<AddProduct />} />
+
+
 
           </Routes>
         </CartProvider>
