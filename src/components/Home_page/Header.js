@@ -30,8 +30,8 @@ export default function Header(){
         </div> */}
 
         <div className="nav-icons">
-        <i className="fa fa-shopping-cart fa-lg"></i>
-        <img src={user} alt="user-logo" />
+            <i className="fa fa-shopping-cart fa-lg"></i>
+            <Link to="/profile"><span><img src={user} alt="user-logo" /></span></Link>
         </div>
         
         

@@ -4,6 +4,7 @@ import Homepage from './Homepage';
 import ShopMain from './components/Shop_page/ShopMain';
 import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
+import Profile from './components/Profile_Page/Profile';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/shop" element={<ShopMain />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </Container>
