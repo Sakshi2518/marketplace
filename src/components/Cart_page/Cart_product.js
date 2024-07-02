@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Cart_product = ({prod_name , imgUrl , price , rentavailibility, delivery, id }) => {
+const Cart_product = ({prod_name , imgUrl , price , rentavailibility, delivery, _id }) => {
   return (
     <>
         <div className='product-img'>
@@ -20,7 +20,7 @@ const Cart_product = ({prod_name , imgUrl , price , rentavailibility, delivery, 
                 <div className='cart-remove'>
                     remove icon
                 </div>
-                <Link to={`/product/${id}`} className="product-link">
+                <Link to={`/product/${_id}`} className="product-link">
               <div className="view-prod"> View Product
                </div>
       </Link>

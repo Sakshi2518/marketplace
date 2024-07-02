@@ -23,7 +23,7 @@ const ContextCart = () => {
           <div className='cart-items-container'>
             <div className='items-info'>
               {item.length > 0 ? item.map((currItem) => (
-                <Cart_product key={currItem.id} {...currItem} />
+                <Cart_product key={currItem._id} {...currItem} />
               )) : <p>Your cart is empty</p>}
             </div>
           </div>
