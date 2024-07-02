@@ -1,35 +1,47 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import prodData from "../Alldata/prodData";
 import "./ProductDetails.css";
 import Header from "../Home_page/Header";
 import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from '../Cart_page/CartProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const product = prodData.find((p) => p.id === parseInt(id));
 
-  const [mainImage, setMainImage] = useState(product.imgUrl);
-  const [clickedImage, setClickedImage] = useState(product.imgUrl);
+  const [mainImage, setMainImage] = useState(product?.imgUrl || '');
+  const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
   const [showFullDescription, setShowFullDescription] = useState(false);
-  
+  const { dispatch, item: cartItems } = useContext(CartContext);
 
   if (!product) {
     return <div>Product not found</div>;
   }
+
+  const isInCart = cartItems.some(item => item.id === product.id);
+
+  const handleAddToCart = () => {
+    if (isInCart) {
+      toast.error(`Product "${product.prod_name}" is already in the cart!`);
+    } else {
+      dispatch({ type: 'ADD_TO_CART', payload: product });
+      toast.success(`Product "${product.prod_name}" has been added to the cart!`);
+    }
+  };
+
   const handleImageClick = (imgUrl) => {
     setMainImage(imgUrl);
     setClickedImage(imgUrl);
   };
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
-  
-  const truncatedDescription = product.description.substring(0, 70) + "...";
 
-  const handleAddToCart = () => {
-    alert(`${product.prod_name} has been added to your cart!`);
-  };
+  const truncatedDescription = product.description.substring(0, 70) + "...";
 
   return (
     <div>
@@ -53,18 +65,10 @@ const ProductDetails = () => {
         </div>
         <div className="prod-description">
           <h1 className="product-name">{product.prod_name}</h1>
-        
+          <p className="delivery">Delivery: {product.delivery}</p>
+
           <p>
             <strong>User rating:</strong> {product.acc_rating}
-          </p>
-          <p>
-            <strong>Price:</strong> {product.price}
-          </p>
-          <p>
-            <strong>Original Price:</strong> <del>{product.origPrice}</del>
-          </p>
-          <p>
-            <strong>Delivery:</strong> {product.delivery}
           </p>
           <p>
             <strong>Category:</strong> {product.category}
@@ -84,14 +88,24 @@ const ProductDetails = () => {
             </span>
           </p>
           <hr />
-          <p>
-            <strong>Available for rent?</strong> {product.rentavailibility}
-          </p>
-          <button className="add-to-cart" onClick={handleAddToCart}>
-            Add to Cart <FaShoppingCart />
-          </button>
+          <div className="price-row">
+            <div className="price">
+              <strong>Price:</strong>{" "}
+              <span className="price-value">Rs.{product.price}</span>
+            </div>
+            <div className="original-price">
+              <span className="original-price-value">
+                ( <del> Rs.{product.origPrice}</del> )
+              </span>
+            </div>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              {isInCart ? "Already in Cart" : "Add to Cart"} <FaShoppingCart />
+            </button>
+          </div>
+          <p>{product.rentavailibility}</p>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 };

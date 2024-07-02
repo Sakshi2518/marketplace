@@ -1,0 +1,18 @@
+[
+    {
+        "category": "Furniture",
+        "condition": "Refurbished",
+        "acc_rating": 10,
+        "prod_name": "High Back Office Chair",
+        "imgUrl": "img05_pr",
+        "delivery": "by 28 June",
+        "price": 600,
+        "origPrice": 1100,
+        "dimensions": "50*50*100 cm",
+        "material": "fabric and metal", 
+        "rentavailibility": "Available for rent",
+        "duration": "1 year",
+        "rentprice": 200,
+        "description": "Ergonomic high back office chair with adjustable height and lumbar support."
+    }
+]

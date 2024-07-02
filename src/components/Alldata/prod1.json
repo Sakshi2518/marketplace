@@ -1,0 +1,16 @@
+[
+    {
+    "category": "Books",
+    "condition": "Like New",
+    "acc_rating": 25,
+    "prod_name": "Schaum series data structures",
+    "imgUrl": "img01_pr",
+    "altImages": ["path/to/img01_pr.jpg", "path/to/img02_pr.jpg", "path/to/img03_pr.jpg", "path/to/img04_pr.jpg"],
+    "delivery": "20 June",
+    "price": 399,
+    "origPrice": 600,
+    "dimensions": "20*15 cm",
+    "material": "paperback cover", 
+    "description": "Comprehensive guide on data structures with numerous examples and exercises."
+}
+ ]

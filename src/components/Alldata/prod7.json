@@ -1,0 +1,19 @@
+[
+    {
+        "category": "Books",
+        "condition": "New",
+        "acc_rating": 50,
+        "prod_name": "Basic Electrical Engineering",
+        "imgUrl": "img07_pr",
+        "delivery": "5 July",
+        "price": 500,
+        "origPrice": 700,
+        "dateOfProd": "2023-03-18",
+        "dimensions": "22*15 cm",
+        "material": "paperback cover", 
+        "rentavailibility": "Available for rent",
+        "duration": "6 months",
+        "rentprice": 150,
+        "description": "Comprehensive guide on basic electrical engineering concepts."
+    }
+]

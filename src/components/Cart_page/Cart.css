@@ -1,0 +1,37 @@
+.cart-section {
+    background-color: #f0f0f0;
+    margin-top: 50px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .main-cart-sec {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .total-items-count {
+    font-weight: bold;
+  }
+  
+  .item-total {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .item-total h3 {
+    margin-bottom: 10px;
+  }
+  
+  .cart-items-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .cart-items-container .items-info {
+    display: grid;
+    grid-gap: 10px;
+  }
+  
