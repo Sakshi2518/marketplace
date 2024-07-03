@@ -1,62 +1,62 @@
 import axios from "../axios";
 import React, { useState , useEffect } from "react";
-//import "./AddProduct.css"
+import "./SellProd.css"
+//import Sidebar from "./Sidebar";
+import "./Sidebar.css"
 
-function AddProduct() {
-  const [category, setCategory] = useState("");
-  const [condition, setCondition] = useState("");
-  const [prodName, setProdName] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
-  const [altImages, setAltImages] = useState("");
-  const [price, setPrice] = useState(0);
-  const [origPrice, setOrigPrice] = useState(0);
-  const [dimensions, setDimensions] = useState("");
-  const [material, setMaterial] = useState("");
-  const [description, setDescription] = useState("");
-  const [initialRender, setInitialRender] = useState(true);
+const SellProd = () => {
+    const [category, setCategory] = useState("");
+    const [condition, setCondition] = useState("");
+    const [prodName, setProdName] = useState("");
+    const [imgUrl, setImgUrl] = useState("");
+    const [altImages, setAltImages] = useState("");
+    const [price, setPrice] = useState(0);
+    const [origPrice, setOrigPrice] = useState(0);
+    const [dimensions, setDimensions] = useState("");
+    const [material, setMaterial] = useState("");
+    const [description, setDescription] = useState("");
 
+    const addProduct = (e) => {
+        e.preventDefault();
+    
+        const altImagesArray = altImages.split(',').map(image => image.trim());
+    
+        axios
+          .post("/products/add", {
+            category,
+            condition,
+            prod_name: prodName,
+            imgUrl,
+            altImages: altImagesArray,
+            price,
+            origPrice,
+            dimensions,
+            material,
+            description
+          })
+          .then(() => {
+            setCategory("");
+            setCondition("");
+            setProdName("");
+            setImgUrl("");
+            setAltImages("");
+            setPrice(0);
+            setOrigPrice(0);
+            setDimensions("");
+            setMaterial("");
+            setDescription("");
+    
+          })
+          .catch((error) => alert(error.message));
+      };
+    
+   ;
 
-  const addProduct = (e) => {
-    e.preventDefault();
+    return (
+        <div className='accountsettings'>
 
-    const altImagesArray = altImages.split(',').map(image => image.trim());
-
-    axios
-      .post("/products/add", {
-        category,
-        condition,
-        prod_name: prodName,
-        imgUrl,
-        altImages: altImagesArray,
-        price,
-        origPrice,
-        dimensions,
-        material,
-        description
-      })
-      .then(() => {
-        setCategory("");
-        setCondition("");
-        setProdName("");
-        setImgUrl("");
-        setAltImages("");
-        setPrice(0);
-        setOrigPrice(0);
-        setDimensions("");
-        setMaterial("");
-        setDescription("");
-        setInitialRender(true);
-
-      })
-      .catch((error) => alert(error.message));
-  };
-
-  useEffect(() => {
-    setInitialRender(false);
-  }, []);
-
-  return (
-    <div className="Addprod-container">
+<div className="Addprod-container">
+       
       <div className="Addprod-section">
         <div className="Addprod-heading">
           <div>Add Product</div>
@@ -79,7 +79,7 @@ function AddProduct() {
                 type="text"
                 onChange={(e) => setImgUrl(e.target.value)}
                 value={imgUrl}
-                placeholder="add the main cover image"
+                placeholder="add url/upload the main cover image"
               />
                <button> Add photo </button>
               </div> 
@@ -91,7 +91,7 @@ function AddProduct() {
                 type="text"
                 onChange={(e) => setAltImages(e.target.value)}
                 value={altImages}
-                placeholder="add 2-3 extra from different angles"
+                placeholder="add url/upload 2-3 extra from different angles"
               />
                <button> Add photo </button>
               </div> 
@@ -122,7 +122,6 @@ function AddProduct() {
                 value={category}
                 placeholder="select condition"
               > 
-               {initialRender && <option value="">Select Category</option>}
                 <option value="Books">Books</option>
                 <option value="Courses">Courses</option>
                 <option value="Electronics">Electronics</option>
@@ -177,7 +176,27 @@ function AddProduct() {
         </div>
       </div>
     </div>
-  );
+            {/* <h1 className='mainhead1'>Change Password</h1>
+
+            <div className='form'>
+                <div className='form-group'>
+                    <label htmlFor='oldpass'>Old Password <span>*</span></label>
+                    <input type="password"
+                    />
+                </div>
+
+                <div className='form-group'>
+                    <label htmlFor='newpass'>New Password <span>*</span></label>
+                    <input type="password"
+                    />
+                </div>
+
+
+            </div>
+
+            <button className='mainbutton1'>Save Changes</button> */}
+        </div>
+    )
 }
 
-export default AddProduct;
+export default SellProd

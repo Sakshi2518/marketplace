@@ -26,7 +26,10 @@
     /* background-color: aqua; */
     border: 1px solid rgb(207, 207, 207);
     border-radius: 5px;
-    min-height: 50vh;
+    overflow-x: hidden;
+    height: calc(100vh - 50px);
+    overflow-y: auto; /* Enable vertical scrolling */
+
 }
 
 

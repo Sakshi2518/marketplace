@@ -5,14 +5,14 @@ import Homepage from './Homepage';
 import ShopMain from './components/Shop_page/ShopMain';
 import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
-import Profile from './components/Profile_Page/Profile';
 import { CartProvider, Cart } from './components/Cart_page/CartProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
-import AddProduct from './components/AddProduct/AddProduct';
+import Profile from './components/Profile_Page/Profile';
 
+//import SellProd from './components/Profile_Page/SellProd';
 
 function App() {
   return (
@@ -33,8 +33,8 @@ function App() {
               <Route path="/shop/cart" element={<Cart />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/addproduct" element={<AddProduct />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/products/add" element={<Profile />} />
             </Routes>
           </CartProvider>
           <ToastContainer 
