@@ -1,0 +1,110 @@
+.profilepage {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.userprofile {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10vh;
+    gap: 20px;
+}
+
+.profilepage .userprofile .leftside {
+    width: 20%;
+    /* background-color: aqua; */
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 5px;
+    min-height: 50vh;
+    
+}
+
+.profilepage .userprofile .rightside {
+    width: 60%;
+    /* background-color: aqua; */
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 5px;
+    min-height: 50vh;
+}
+
+
+
+
+
+@media (max-width: 1000px) {
+    .profilepage .userprofile .leftside {
+        width: 30%;
+        /* background-color: aqua; */
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 5px;
+        min-height: 50vh;
+    }
+
+    .userprofile {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10vh;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1000px){
+    .profilepage .userprofile .leftside {
+        width: 30%;
+        /* background-color: aqua; */
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 5px;
+        min-height: 50vh;
+    }
+    .profilepage .userprofile .rightside {
+        width: 68%;
+        /* background-color: aqua; */
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 5px;
+        min-height: 50vh;
+    }
+
+    .userprofile {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10vh;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 500px){
+    .userprofile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10vh;
+        gap: 20px;
+    }
+
+    .profilepage .userprofile .leftside {
+        width: 97%;
+        /* background-color: aqua; */
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 5px;
+        /* min-height: 50vh; */
+        align-self: center;
+        min-height: 0;
+    }
+
+    .profilepage .userprofile .rightside {
+        width: 97%;
+        /* background-color: aqua; */
+        border: 1px solid rgb(207, 207, 207);
+        border-radius: 5px;
+        /* min-height: 50vh; */
+        align-self: center;
+        min-height: 0;
+    }
+}
+
+

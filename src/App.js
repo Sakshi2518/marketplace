@@ -1,38 +1,56 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Auth0Provider } from "@auth0/auth0-react";
 import Homepage from './Homepage';
 import ShopMain from './components/Shop_page/ShopMain';
 import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
+import Profile from './components/Profile_Page/Profile';
 import { CartProvider, Cart } from './components/Cart_page/CartProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
+import Register from './components/Login_signup/Register';
+import Login from './components/Login_signup/Login';
+import AddProduct from './components/AddProduct/AddProduct';
+
 
 function App() {
   return (
-    <Container>
-      <BrowserRouter>
-        <CartProvider>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/shop" element={<ShopMain />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/shop/cart" element={<Cart />} />
-          </Routes>
-        </CartProvider>
-        <ToastContainer 
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </BrowserRouter>
-    </Container>
+    <Auth0Provider
+       domain="dev-a3h42errc2tx6ec7.us.auth0.com"
+       clientId="X9Y7bGmi4qZU9D6m7nqQq6vVBsunbaRF"
+       authorizationParams={{
+      redirect_uri: window.location.origin
+      }}
+    >
+      <Container>
+        <BrowserRouter>
+          <CartProvider>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/products/get" element={<ShopMain />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/shop/cart" element={<Cart />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/addproduct" element={<AddProduct />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </CartProvider>
+          <ToastContainer 
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </BrowserRouter>
+      </Container>
+    </Auth0Provider>
   );
 }
 

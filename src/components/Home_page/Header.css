@@ -1,76 +1,107 @@
 .navbar {
-    padding: 10px 15px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.265);
-    align-items: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 1000;
-  }
-  
-  .navbar-heading{
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-  }
-  
-  .navbar h4,
-  .explore,
-  .about,
-  .contact {
-    color: black;
-  }
-  
-  
-  
-  .nav-search {
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 5px;
-  }
-  
-  #searchbox {
-    border: none;
-    padding: 5px;
-    width: 400px;
-  }
-  
-  .nav-search>i {
-    margin-right: 8px;
-  }
-  
-  .nav-icons {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .nav-icons>i {
-    padding-right: 20px;
-    font-size: 28px;
-  }
-  
-  .navbar img,
-  .navbar .fas {
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
-  }
+  padding: 10px 15px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.265);
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 1000;
+}
 
-  .cart-link{
-    padding-right: 10px;
-  }
-  .cart-count {
-    position: absolute;
-    top: 1px;
-    right: 50px;
-    background-color:#9eadcf;
-    color: white;
-    border-radius: 50%;
-    padding: 3px 6px;
-    font-size: 10px;
-  }
-  
+.navbar-heading{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.navbar h4,
+.explore,
+.about,
+.contact {
+  color: black;
+}
+
+
+
+.nav-search {
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+#searchbox {
+  border: none;
+  padding: 5px;
+  width: 400px;
+}
+
+.nav-search>i {
+  margin-right: 8px;
+}
+
+.nav-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-icons>i {
+  padding-right: 20px;
+  font-size: 28px;
+}
+
+.navbar img,
+.navbar .fas {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+.auth-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-button {
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #0056b3;
+}
+
+.auth-button:focus {
+  outline: none;
+}
+
+.cart-link{
+  padding-right: 22px;
+  padding-top: 7px;
+}
+
+.cart-link svg{
+  height: 27px;
+  width: 27px;
+}
+.cart-count {
+  position: absolute;
+  top: 3px;
+  right: 100px;
+  background-color:#9eadcf;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+

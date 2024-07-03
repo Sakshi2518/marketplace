@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import prodData from "../Alldata/prodData";
 import "./ProductDetails.css";
 import Header from "../Home_page/Header";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from '../Cart_page/CartProvider';
-import { useContext } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const product = prodData.find((p) => p.id === parseInt(id));
+
+  const [mainImage, setMainImage] = useState(product?.imgUrl || '');
+  const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
+  const [showFullDescription, setShowFullDescription] = useState(false);
   const { dispatch, item: cartItems } = useContext(CartContext);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   const isInCart = cartItems.some(item => item.id === product.id);
 
@@ -25,14 +32,6 @@ const ProductDetails = () => {
     }
   };
 
-  const [mainImage, setMainImage] = useState(product.imgUrl);
-  const [clickedImage, setClickedImage] = useState(product.imgUrl);
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
   const handleImageClick = (imgUrl) => {
     setMainImage(imgUrl);
     setClickedImage(imgUrl);
@@ -41,7 +40,7 @@ const ProductDetails = () => {
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
-  
+
   const truncatedDescription = product.description.substring(0, 70) + "...";
 
   return (

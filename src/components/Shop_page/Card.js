@@ -2,14 +2,15 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Card.css';
 import { CartContext } from '../Cart_page/CartProvider';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ item }) => {
-  const { id, imgUrl, prod_name, price, delivery, origPrice } = item;
+  const { _id, imgUrl, prod_name, price, delivery, origPrice } = item; // Adjusted to use _id
   const { dispatch, item: cartItems } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+    const existingItem = cartItems.find(cartItem => cartItem._id === item._id); // Adjusted to use _id
     if (existingItem) {
       toast.error(`Product "${prod_name}" is already in the cart!`);
     } else {
@@ -18,11 +19,11 @@ const Card = ({ item }) => {
     }
   };
 
-  const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+  const existingItem = cartItems.find(cartItem => cartItem._id === item._id); // Adjusted to use _id
 
   return (
     <div className="product-section">
-      <Link to={`/product/${id}`} className="product-link">
+      <Link to={`/product/${_id}`} className="product-link"> {/* Adjusted to use _id */}
         <div className="prod-img">
           <img src={imgUrl} alt={prod_name} className="ev-img" />
         </div>
@@ -41,7 +42,6 @@ const Card = ({ item }) => {
           {existingItem ? "Added to Cart" : "Add to Cart"}
         </button>
       </div>
-      {/* <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover /> */}
     </div>
   );
 };

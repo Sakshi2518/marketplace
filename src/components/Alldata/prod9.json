@@ -1,0 +1,19 @@
+[
+    {
+        "category": "Books",
+        "condition": "New",
+        "acc_rating": 70,
+        "prod_name": "Digital Electronics-All in one",
+        "imgUrl": "img09_pr",
+        "delivery": "15 July",
+        "price": 600,
+        "origPrice": 800,
+        "dateOfProd": "2022-12-05",
+        "dimensions": "24*17 cm",
+        "material": "paperback cover", 
+        "rentavailibility": "Available for rent",
+        "duration": "6 months",
+        "rentprice": 200,
+        "description": "All-inclusive guide on digital electronics, covering basics to advanced topics."
+    }
+]
