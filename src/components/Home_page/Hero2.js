@@ -1,7 +1,9 @@
 import React from "react";
-import rent from "../../images/rent.jpg";
 import myVideo from '../../images/hero2.mp4';
 import { Icon } from '@iconify-icon/react';
+import buy from "../../images/buy.png"
+import sell from "../../images/sell.png"
+import dell from "../../images/delivery.png"
 
 
 
@@ -14,24 +16,18 @@ export default function Hero2() {
           Your browser does not support the video tag.
         </video>
       </div>
-      <div className="explore-content">        
-        <div className="RPS">
-          <div className="RPS-items">
-            <img className="RPS-logos" src={rent} alt="rent-logo" />
-            <h2 className="RPS-names">Buy</h2>
-          </div>
-          <div className="RPS-items">
-            <img className="RPS-logos" src={rent} alt="rent-logo" />
-            <h2 className="RPS-names">Rent</h2>
-          </div>
-          <div className="RPS-items">
-            <img className="RPS-logos" src={rent} alt="rent-logo" />
-            <h2 className="RPS-names">Sell</h2>
-          </div>
-        </div>
-      </div>
+      <div className="about-us">
+                <h2>What we offer</h2>
+                <div className="about-content">
+                <ul>
+                  <li><img className="im2" src={sell}/>Buy second hand items from your peers at reasonable price</li>
+                  <li><img className="im2" src={buy}/>Sell your old items that may come in use to other students</li>
+                  <li><img className="im2" src={dell}/>Collect all the products in the college itself hence no delivery costs</li>
+                </ul>
+                </div>
+            </div>
       <div className="cat-heading">
-      <span>Choose a category</span>
+      <span>List of Categories</span>
       </div>
       <div className="categories">
          <div className="--catitems">

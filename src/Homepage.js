@@ -8,6 +8,7 @@ import './App.css'; // Import the CSS file
 import './components/Home_page/Header.css';
 import './components/Home_page/Hero.css';
 import './components/Home_page/Footer.css';
+import './components/Home_page/Hero2.css';
 import './components/Home_page/Team.css';
 
 
