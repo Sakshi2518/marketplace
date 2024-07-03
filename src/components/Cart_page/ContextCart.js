@@ -1,36 +1,74 @@
-import React, { useContext } from 'react';
-import Cart_product from './Cart_product';
-import { CartContext } from './CartProvider';
-import "./Cart.css"
-import Header from "../Home_page/Header.1";
+import React, { useContext } from "react";
+import Cart_product from "./Cart_product";
+import { CartContext } from "./CartProvider";
+import "./Cart.css";
+import Header from "../Home_page/Header.js";
+import { Link } from "react-router-dom";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 const ContextCart = () => {
-  const { item , totalAmount } = useContext(CartContext);
+  const { item, totalAmount } = useContext(CartContext);
 
   return (
-    <div>
-        <Header/>
-      <div className='cart-section'>
-        <div className='cont-shopping'>
-          back arrow
-          <h3>continue shopping</h3>
+    <div className="cart">
+      <Header />
+      <div className="cart-section">
+        <div className="cont-shopping">
+          <Link to="/products/get">
+            <span>
+              <MdArrowBackIosNew /> Continue Shopping
+            </span>
+          </Link>
         </div>
       </div>
-      <section className='main-cart-sec'>
-        <h1>Shopping cart</h1>
-        <p>You have <span className='total-items-count'>{item.length}</span> items in shopping cart</p>
-        <div className='cart-items'>
-          <div className='cart-items-container'>
-            <div className='items-info'>
-              {item.length > 0 ? item.map((currItem) => (
-                <Cart_product key={currItem._id} {...currItem} />
-              )) : <p>Your cart is empty</p>}
+      <section className="main-cart-sec">
+        <div className="cart-and-summary">
+          <div className="cart-table">
+            <h1>Your Cart</h1>
+            <div className="table-wrapper">
+              {item.length > 0 ? (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th></th>
+                      <th>Deliver By</th>
+                      <th>Price</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {item.map((currItem) => (
+                      <Cart_product key={currItem._id} {...currItem} />
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>Your cart is empty</p>
+              )}
             </div>
           </div>
-        </div>
-        <div className='item-total'>
-          <h3>Total Amount: {totalAmount}</h3>
-          <button>Checkout</button>
+
+          <div className="order-summary">
+            <h1>Order Summary</h1>
+            <hr />
+            <table>
+              <tbody>
+                <tr>
+                  <td>Number of Products</td>
+                  <td>{item.length}</td>
+                </tr>
+                <tr className="total-amount-box">
+                  <td>Total Amount: </td>
+                  <td>Rs.{totalAmount.toFixed(2)}</td>
+                </tr>
+              </tbody>
+            </table>
+            {/* <div className="total-amount-box">
+              <span>Total Amount: Rs.{totalAmount.toFixed(2)}</span>
+            </div> */}
+            <button className="checkout-button">Checkout</button>
+          </div>
         </div>
       </section>
     </div>
@@ -38,3 +76,4 @@ const ContextCart = () => {
 };
 
 export default ContextCart;
+
