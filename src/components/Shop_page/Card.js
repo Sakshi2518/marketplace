@@ -41,7 +41,7 @@ const Card = ({ item }) => {
           {existingItem ? "Added to Cart" : "Add to Cart"}
         </button>
       </div>
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      {/* <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover /> */}
     </div>
   );
 };
