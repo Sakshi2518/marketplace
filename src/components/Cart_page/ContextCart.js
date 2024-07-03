@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Cart_product from "./Cart_product";
 import { CartContext } from "./CartProvider";
 import "./Cart.css";
-import Header from "../Home_page/Header";
+import Header from "../Home_page/Header.js";
 import { Link } from "react-router-dom";
 import { MdArrowBackIosNew } from "react-icons/md";
 
@@ -14,7 +14,7 @@ const ContextCart = () => {
       <Header />
       <div className="cart-section">
         <div className="cont-shopping">
-          <Link to="/shop">
+          <Link to="/products/get">
             <span>
               <MdArrowBackIosNew /> Continue Shopping
             </span>
@@ -39,7 +39,7 @@ const ContextCart = () => {
                   </thead>
                   <tbody>
                     {item.map((currItem) => (
-                      <Cart_product key={currItem.id} {...currItem} />
+                      <Cart_product key={currItem._id} {...currItem} />
                     ))}
                   </tbody>
                 </table>

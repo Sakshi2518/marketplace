@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from "../Home_page/Header.1.js";
+import Header from "../Home_page/Header.js";
 import './Profile.css'
 import Sidebar from './Sidebar.js'
 import AccountSettings from './AccountSettings.js'

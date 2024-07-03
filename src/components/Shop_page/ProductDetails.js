@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = prodData.find((p) => p.id === parseInt(id));
+  const product = prodData.find((p) => p._id === parseInt(id));
 
   const [mainImage, setMainImage] = useState(product?.imgUrl || '');
   const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
@@ -21,7 +21,7 @@ const ProductDetails = () => {
     return <div>Product not found</div>;
   }
 
-  const isInCart = cartItems.some(item => item.id === product.id);
+  const isInCart = cartItems.some(item => item._id === product._id);
 
   const handleAddToCart = () => {
     if (isInCart) {

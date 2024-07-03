@@ -84,20 +84,19 @@ import { CartContext } from "../Cart_page/CartProvider";
 import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import prodData from "../Alldata/prodData";
 
-const CartProduct = ({ prod_name, imgUrl, price, delivery, id }) => {
+const Cart_Product = ({ prod_name, imgUrl, price, delivery, _id }) => {
   const { dispatch, item: cartItems } = useContext(CartContext); // Assuming CartContext provides dispatch and cartItems
-  const product = cartItems.find((p) => p.id === parseInt(id));
+  const product = cartItems.find((p) => p._id === parseInt(_id));
 
   const handleRemove = () => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: id });
-    toast.success(`Product "${product.prod_name}" has been removed!`);
+    dispatch({ type: "REMOVE_FROM_CART", payload: _id });
+    toast.success(`Product "${prod_name}" has been removed!`);
   };
   return (
     <tr>
       <td className="product-img">
-        <Link to={`/product/${id}`} className="product-link">
+        <Link to={`/product/${_id}`} className="product-link">
           <img
             src={imgUrl}
             alt="Product Image"
@@ -106,7 +105,7 @@ const CartProduct = ({ prod_name, imgUrl, price, delivery, id }) => {
         </Link>
       </td>
       <td className="cart-prod-title">
-        <Link to={`/product/${id}`} className="product-link">
+        <Link to={`/product/${_id}`} className="product-link">
           <span>{prod_name}</span>
         </Link>
       </td>
@@ -121,4 +120,4 @@ const CartProduct = ({ prod_name, imgUrl, price, delivery, id }) => {
   );
 };
 
-export default CartProduct;
+export default Cart_Product;

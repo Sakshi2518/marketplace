@@ -30,13 +30,13 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       const newItem = action.payload;
-      const existingItem = state.item.find((item) => item.id === newItem.id);
+      const existingItem = state.item.find((item) => item._id === newItem._id);
 
       if (existingItem) {
         return {
           ...state,
           item: state.item.map((item) =>
-            item.id === newItem.id
+            item._id === newItem._id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -51,14 +51,14 @@ export const reducer = (state, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        item: state.item.filter((item) => item.id !== action.payload),
+        item: state.item.filter((item) => item._id !== action.payload),
       };
 
     case "UPDATE_CART":
       return {
         ...state,
         item: state.item.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
