@@ -1,4 +1,6 @@
+// ContextCart.js
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Cart_product from "./Cart_product";
 import { CartContext } from "./CartProvider";
 import "./Cart.css";
@@ -8,6 +10,15 @@ import { MdArrowBackIosNew } from "react-icons/md";
 
 const ContextCart = () => {
   const { item, totalAmount } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    const userId = "currentUserId"; // Replace with actual user ID
+    const userEmail = "currentUserEmail"; // Replace with actual user email
+    const checkoutTime = Date.now();
+
+    navigate('/orders', { state: { items: item, userId, userEmail, checkoutTime } });
+  };
 
   return (
     <div className="cart">
@@ -64,10 +75,7 @@ const ContextCart = () => {
                 </tr>
               </tbody>
             </table>
-            {/* <div className="total-amount-box">
-              <span>Total Amount: Rs.{totalAmount.toFixed(2)}</span>
-            </div> */}
-            <button className="checkout-button">Checkout</button>
+            <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
           </div>
         </div>
       </section>
@@ -76,4 +84,3 @@ const ContextCart = () => {
 };
 
 export default ContextCart;
-
