@@ -9,7 +9,7 @@ export default function Footer() {
     const [submitted, setSubmitted] = useState(false);
 
     const handleRatingSubmit = () => {
-        setSubmitted(true); // Set submitted to true to indicate the rating has been submitted
+        setSubmitted(true); 
     };
 
     return (   
@@ -55,7 +55,7 @@ export default function Footer() {
                     <FaStar 
                         icon="bi:star-fill" 
                         className="star-icon"
-                        color={currentRating <= (hover || rating) ? "#34344d" : "#9eadcf"} // Adjusted condition
+                        color={currentRating <= (hover || rating) ? "#34344d" : "#9eadcf"} 
                         onMouseEnter={() => setHover(currentRating)}
                         onMouseLeave={() => setHover(null)}
                     />

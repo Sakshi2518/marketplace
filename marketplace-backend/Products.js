@@ -10,10 +10,7 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  acc_rating: {
-    type: Number,
-    required: true
-  },
+ 
   prod_name: {
     type: String,
     required: true
@@ -26,10 +23,7 @@ const ProductSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  delivery: {
-    type: String,
-    required: true
-  },
+ 
   price: {
     type: Number,
     required: true

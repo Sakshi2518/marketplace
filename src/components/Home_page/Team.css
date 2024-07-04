@@ -83,42 +83,51 @@
   
   
   .member-heading {
-    font-weight: 500;
-    margin-top: 12px;
-    padding: 5px;
-    font-size: 30px;
+    margin-top: 50px;
+    padding: 10px;
+    font-size: 25px;
     text-align: center;
     font-family: Work Sans;
-    position: relative; /* Position the lines relative to the heading */
-    text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5); /* Add text shadow */
+    position: relative; 
+    text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5); 
   
   }
+
   
   .member-heading::before,
   .member-heading::after {
-    content: ''; /* Empty content */
-    position: absolute; /* Position the lines */
-    top: 50%; /* Position the lines in the middle vertically */
-    width: 70%; /* Adjust the width of the lines */
-    height: 1px; /* Adjust the thickness of the lines */
-    background-color:white; /* Color of the lines */
+    content: ''; 
+    position: absolute; 
+    top: 50%; 
+    width: 70%; 
+    height: 1px; 
+    background-color:white; 
   }
   
   .member-heading::before {
-    left: 0; /* Position the line on the left */
-    transform: translate(-50%, -50%); /* Move the line to the left */
-  }
+    left: 0; 
+    transform: translate(-50%, -50%); }
   
   .member-heading::after {
-    right: 0; /* Position the line on the right */
-    transform: translate(50%, -50%); /* Move the line to the right */
+    right: 0;
+    transform: translate(50%, -50%); 
+  }
+
+  .team-intro{
+    max-height: 70vh;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    font-family: Merriweather;
+    text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5);
   }
   
   
   .member-pic{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
+    padding: 15px 2px;
    }
   
   .members{
@@ -133,6 +142,9 @@
     flex-direction: column;
     align-items: center;
     font-family: Merriweather;
+    border: 1px solid;
+    width: 20%;
+    height: 19rem;
   
     h2{
       font-weight: 400;
