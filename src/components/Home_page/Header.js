@@ -42,6 +42,7 @@ export default function Header(){
         {/*<div className="nav-icons">*/}
             
       
+
         
        
        
@@ -56,10 +57,9 @@ export default function Header(){
                 </button>
             )}
         </div>
-        {/*</div>*/}
-        
+        {/*</div>*/}       
       
       
     </nav>
-  );
+  )
 }
