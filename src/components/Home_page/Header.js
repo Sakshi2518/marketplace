@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 //import user from "../../images/user.svg";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { FaShoppingCart } from "react-icons/fa";
@@ -11,7 +11,7 @@ export default function Header(){
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { item } = useContext(CartContext);
-
+console.log(user);
     return(
 
      <nav className="navbar">
