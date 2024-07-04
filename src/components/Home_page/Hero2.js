@@ -15,6 +15,10 @@ export default function Hero2() {
           <source src={myVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <video autoPlay loop muted className="stars-video">
+          <source src={myVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div className="about-us">
                 <h2>What we offer</h2>
@@ -29,6 +33,7 @@ export default function Hero2() {
       <div className="cat-heading">
       <span>List of Categories</span>
       </div>
+      <div className="category-container">
       <div className="categories">
          <div className="--catitems">
          <Icon icon="raphael:books" className="--catlogos"/>
@@ -54,6 +59,7 @@ export default function Hero2() {
           <div className="--catitems">
           <Icon icon="fluent:task-list-square-person-20-filled" className="--catlogos"/>
             <h2 className="--catnames">Others</h2>
+          </div>
           </div>
           
       </div>
