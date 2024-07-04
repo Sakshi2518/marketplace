@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../Home_page/Header';
+import Header from './Shopheader';
 import Navigation from './Navigation';
 import Searchfilter from './Searchfilter';
 import axios from '../axios';
@@ -7,6 +7,7 @@ import Card from './Card';
 import Sortdd from './Sortdd';
 import './Card.css';
 import './Searchfilter.css';
+import Shopheader from './Shopheader';
 
 function ShopMain() {
   const [products, setProducts] = useState([]);
@@ -65,7 +66,7 @@ function ShopMain() {
 
   return (
     <div>
-      <Header />
+      <Shopheader />
       <Navigation query={query} handleInputChange={handleInputChange} />
       <div className="sort-filter-section">
         <Searchfilter handleFilter={handleFilter} setSortingValue={setSortingValue} />

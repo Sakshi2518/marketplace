@@ -1,17 +1,13 @@
 import React, { useContext } from "react";
-//import user from "../../images/user.svg";
-import { json, Link } from "react-router-dom";
-
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from "../Cart_page/CartProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
-export default function Header(){
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+
+export default function Shopheader(){
+ 
   const { item } = useContext(CartContext);
-console.log(user);
+
     return(
 
      <nav className="navbar">
@@ -43,22 +39,15 @@ console.log(user);
 
         {/*<div className="nav-icons">*/}
             
-      
-        
+      <div className="nav-icons">
+      <Link to="/shop/cart" className="cart-link">
+      <FaShoppingCart size={24} />
+
+          {item.length > 0 && <span className="cart-count">{item.length}</span>}
+        </Link>
+      <Link to="/profile"><span><img src="" alt="user" /></span></Link>
        
-       
-      <div className="auth-button-container">
-            {isAuthenticated ? (
-                <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                    Logout
-                </button>
-            ) : (
-                <button className="auth-button" onClick={() => loginWithRedirect()}>
-                    Login
-                </button>
-            )}
-        </div>
-        {/*</div>*/}
+      </div>
         
       
       

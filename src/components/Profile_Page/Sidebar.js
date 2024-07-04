@@ -39,12 +39,12 @@ export const Sidebar = ({ currentSection, setCurrentSection }) => {
       </Link>
 
       <Link
-        to='/user/changepassword'
+        to='/products/add'
         className='stylenone'
-        onClick={() => setCurrentSection('changepassword')}
+        onClick={() => setCurrentSection('sellprod')}
       >
-        <div className={currentSection === 'changepassword' ? 's2' : 's1'}>
-          <span>Change Password</span>
+        <div className={currentSection === 'sellprod' ? 's2' : 's1'}>
+          <span>Sell Products</span>
         </div>
       </Link>
     </div>
