@@ -1,3 +1,4 @@
+
 // ContextCart.js
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import "./Cart.css";
 import Header from "../Home_page/Header.js";
 import { Link } from "react-router-dom";
 import { MdArrowBackIosNew } from "react-icons/md";
+
 
 const ContextCart = () => {
   const { item, totalAmount } = useContext(CartContext);

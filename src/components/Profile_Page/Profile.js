@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Shopheader from '../Shop_page/Shopheader.js'
 import './Profile.css'
 import Sidebar from './Sidebar.js'
-import AccountSettings from './AccountSettings.js'
+import AccountSettings from './AccountSettings'
 import YourOrders from './YourOrders.js'
 import YourSale from './YourSale.js'
 import SellProd from "./SellProd.js"

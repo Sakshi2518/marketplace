@@ -12,6 +12,7 @@ import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import Profile from './components/Profile_Page/Profile';
 import YourOrders from './components/Profile_Page/YourOrders';
+import Header from './components/Home_page/Header'
 
 //import SellProd from './components/Profile_Page/SellProd';
 
@@ -35,9 +36,6 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/products/add" element={<Profile />} />
-              <Route path="/orders" element={<YourOrders />} />
-
             </Routes>
           </CartProvider>
           <ToastContainer 
