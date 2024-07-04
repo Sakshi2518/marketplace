@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Header from "../Home_page/Header.1.js";
+import Header from '../Home_page/Header';
 import './Profile.css'
 import Sidebar from './Sidebar.js'
-import AccountSettings from './AccountSettings.js'
+import AccountSettings from './AccountSettings'
 import YourOrders from './YourOrders.js'
 import YourSale from './YourSale.js'
 import ChangePassword from './ChangePassword.js'

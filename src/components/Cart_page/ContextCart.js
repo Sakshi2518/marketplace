@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Cart_product from './Cart_product';
 import { CartContext } from './CartProvider';
 import "./Cart.css"
-import Header from "../Home_page/Header.1";
+import Header from "../Home_page/Header";
 
 const ContextCart = () => {
   const { item , totalAmount } = useContext(CartContext);

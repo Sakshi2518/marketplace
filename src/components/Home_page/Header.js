@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-//import user from "../../images/user.svg";
+import user from "../../images/user.svg";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -42,7 +42,6 @@ export default function Header(){
             
       <div className="nav-icons">
       <div className="nav-icons">
-      <i className="fa fa-shopping-cart fa-lg"></i>
       <Link to="/profile"><span><img src={user} alt="user-logo" /></span></Link>
         <Link to="/shop/cart" className="cart-link">
           <FaShoppingCart size={24} />

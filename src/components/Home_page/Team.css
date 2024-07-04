@@ -5,7 +5,7 @@
   }
   
   .about-us{
-    padding-top: 20px;
+    padding-top: 55px;
     display: flex;
     flex-direction: column;
     align-self:center ;
@@ -83,9 +83,10 @@
   
   
   .member-heading {
-    margin-top: 50px;
-    padding: 10px;
-    font-size: 25px;
+    font-weight: 500;
+    margin-top: 12px;
+    padding: 5px;
+    font-size: 30px;
     text-align: center;
     font-family: Work Sans;
     position: relative; /* Position the lines relative to the heading */
@@ -115,8 +116,8 @@
   
   
   .member-pic{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 100%;
    }
   

@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import AddProduct from './components/AddProduct/AddProduct';
+import Header from './components/Home_page/Header'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/addproduct" element={<AddProduct />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/#about-section" element={<Header />} />
             </Routes>
           </CartProvider>
           <ToastContainer 
