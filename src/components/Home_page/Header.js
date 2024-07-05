@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from "../Cart_page/CartProvider";
@@ -40,9 +41,11 @@ export default function Header(){
 
         {/*<div className="nav-icons">*/}
             
-    
+      
+
         
-         
+       
+       
       <div className="auth-button-container">
             {isAuthenticated ? (
                 <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
@@ -54,10 +57,9 @@ export default function Header(){
                 </button>
             )}
         </div>
-        {/*</div>*/}
-        
+        {/*</div>*/}       
       
       
     </nav>
-  );
+  )
 }

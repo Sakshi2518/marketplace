@@ -12,6 +12,7 @@ export default function Hero(){
           <source src={rocket} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
          </div>
            <div className="landing-content">
            <h2>Where College Commerce Meets Convenience<br></br></h2>

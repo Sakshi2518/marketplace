@@ -13,26 +13,22 @@ export default function Team(){
               <div className="member-info">
                 <img className="member-pic" src={user} alt="rent-logo" />
                 <h2>Sakshi Singh</h2>
-                <h3>ECE AI</h3>
-                <h3>3rd</h3>
+                <h3>ECE AI'26</h3>
               </div>
               <div className="member-info">
                 <img className="member-pic" src={user} alt="rent-logo" />
                 <h2>Srishneet Kaur</h2>
-                <h3>ECE AI</h3>
-                <h3>3rd</h3>
+                <h3>ECE AI'26</h3>
               </div>
               <div className="member-info">
                 <img className="member-pic" src={user} alt="rent-logo" />
                 <h2>Anshika Aggarwal</h2>
-                <h3>CSE</h3>
-                <h3>3rd</h3>
+                <h3>CSE'26</h3>
               </div>
               <div className="member-info">
                 <img className="member-pic" src={user} alt="rent-logo" />
                 <h2>Aayushi Sinha</h2>
-                <h3>CSE</h3>
-                <h3>3rd</h3>
+                <h3>CSE'26</h3>
               </div>              
             </div>
            

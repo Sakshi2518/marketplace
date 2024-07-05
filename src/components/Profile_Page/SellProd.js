@@ -9,12 +9,37 @@ const SellProd = () => {
     const [condition, setCondition] = useState("");
     const [prodName, setProdName] = useState("");
     const [imgUrl, setImgUrl] = useState("");
-    const [altImages, setAltImages] = useState("");
+    const [altImages, setAltImages] = useState([]);
     const [price, setPrice] = useState(0);
     const [origPrice, setOrigPrice] = useState(0);
     const [dimensions, setDimensions] = useState("");
     const [material, setMaterial] = useState("");
     const [description, setDescription] = useState("");
+
+    /**************************/
+    const handleImageChange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        setImgUrl(imageUrl);
+      }
+    };
+  
+    const handleAltImageChange = (e) => {
+      const files = Array.from(e.target.files);
+      const newAltImages = files.map((file) => URL.createObjectURL(file));
+      setAltImages((prevImages) => [...prevImages, ...newAltImages]);
+    };
+  
+    const removeImage = (index) => {
+      setAltImages((prevImages) => prevImages.filter((_, i) => i !== index));
+    };
+
+    const removeMainImage = () => {
+      setImgUrl("");
+    };
+
+    /********************************/
 
     const addProduct = (e) => {
         e.preventDefault();
@@ -27,7 +52,7 @@ const SellProd = () => {
             condition,
             prod_name: prodName,
             imgUrl,
-            altImages: altImagesArray,
+            altImages/*: altImagesArray*/,
             price,
             origPrice,
             dimensions,
@@ -39,7 +64,7 @@ const SellProd = () => {
             setCondition("");
             setProdName("");
             setImgUrl("");
-            setAltImages("");
+            setAltImages([]);
             setPrice(0);
             setOrigPrice(0);
             setDimensions("");
@@ -50,7 +75,7 @@ const SellProd = () => {
           .catch((error) => alert(error.message));
       };
     
-   ;
+   
 
     return (
         <div className='accountsettings'>
@@ -73,18 +98,34 @@ const SellProd = () => {
               />
             </div>
             <div>
-              <p>Main Cover Image</p>
+              <p>Main Cover Image (200px * 200px)</p>
               <div className="pic-upload">
               <input
-                type="text"
-                onChange={(e) => setImgUrl(e.target.value)}
-                value={imgUrl}
+                type="file"
+                /*onChange={(e) => setImgUrl(e.target.value)}
+                value={imgUrl}*/
+                onChange={handleImageChange}
+                accept="image/jpeg, image/png, image/jpg"
+                id="input-file"
                 placeholder="add url/upload the main cover image"
               />
-               <button> Add photo </button>
+               
+               {imgUrl && (
+                    <div className="main-img-cont">
+                      <img src={imgUrl} alt="Product Cover" id="profile-pic" />
+                      <button className="btn" type="button" onClick={removeMainImage}>
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                  <label htmlFor="input-file"> Add photo </label>
               </div> 
+              
+              
             </div>
+            
             <div>
+              {/*
               <p>Main Cover Image</p>
               <div className="pic-upload">
               <input
@@ -93,9 +134,55 @@ const SellProd = () => {
                 value={altImages}
                 placeholder="add url/upload 2-3 extra from different angles"
               />
-               <button> Add photo </button>
+               <label> Add photo </label>
               </div> 
-            </div>
+              */}
+
+              {/*<div className="alt-images-container">
+                  {altImages.map((image, index) => (
+                    <div key={index} className="alt-image">
+                      <img src={image} alt={`Alt ${index}`} />
+                      <button type="button" onClick={() => removeImage(index)}>
+                        Delete
+                      </button>
+                    </div>
+                  ))}
+                </div>*/}
+
+
+              </div>
+              {/************************/}
+              <div>
+                <p>Additional Images (200px * 200px)</p>
+                <div className="pic-upload">
+                  <input
+                    type="file"
+                    onChange={handleAltImageChange}
+                    accept="image/jpeg, image/png, image/jpg"
+                    multiple="multiple"
+                    id="alt-input-file"
+                    placeholder="add url/upload 2-3 extra from different angles"
+                  />
+                  
+                  <div className="alt-images-container">
+                    {altImages.map((image, index) => (
+                      <div key={index} className="alt-image">
+                        <img src={image} alt={`Alt ${index}`} />
+                        <button className="btn" type="button" onClick={() => removeImage(index)}>
+                          Delete
+                        </button>
+                        </div>
+                      
+                    ))}
+                
+                </div>
+                <label htmlFor="alt-input-file"> Add photos </label>
+                
+                </div>
+              
+              </div>
+              {/***********************/}
+            
             
             <div className="prod-price-cat">
               <div className="prod-flex">
