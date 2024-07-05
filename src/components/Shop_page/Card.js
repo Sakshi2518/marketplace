@@ -6,9 +6,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ item }) => {
-  const { _id, imgUrl, prod_name, price, delivery, origPrice } = item; // Adjusted to use _id
+  const { _id, imgUrl, prod_name, price, origPrice } = item; // Adjusted to use _id
   const { dispatch, item: cartItems } = useContext(CartContext);
 
+ 
   const handleAddToCart = () => {
     const existingItem = cartItems.find(cartItem => cartItem._id === item._id); // Adjusted to use _id
     if (existingItem) {
@@ -19,7 +20,13 @@ const Card = ({ item }) => {
     }
   };
 
-  const existingItem = cartItems.find(cartItem => cartItem._id === item._id); // Adjusted to use _id
+  const existingItem = cartItems.find(cartItem => cartItem._id === item._id); 
+  const options = { day: 'numeric', month: 'long' };
+
+  const deliveryDate = new Date();
+  deliveryDate.setDate(deliveryDate.getDate() + 2);
+
+
 
   return (
     <div className="product-section">
@@ -35,7 +42,7 @@ const Card = ({ item }) => {
         </div>
         <div className="prod-delivery">
           <span className="prod-deliveryby">
-            Delivery By <i className="delivery-date"></i> {delivery}
+            Delivery By <i className="delivery-date"></i> {deliveryDate.toLocaleDateString('en-US', options)}
           </span>
         </div>
         <button className="prod-btn-details" onClick={handleAddToCart}>

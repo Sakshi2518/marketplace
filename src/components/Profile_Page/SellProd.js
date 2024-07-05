@@ -4,6 +4,8 @@ import "./SellProd.css"
 //import Sidebar from "./Sidebar";
 import "./Sidebar.css"
 import { Icon } from '@iconify-icon/react';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const SellProd = () => {
     const [category, setCategory] = useState("Books");
@@ -40,7 +42,6 @@ const SellProd = () => {
       setImgUrl("");
     };
 
-    /********************************/
 
     const addProduct = (e) => {
         e.preventDefault();
@@ -69,11 +70,15 @@ const SellProd = () => {
             setDimensions("");
             setMaterial("");
             setDescription("");
+
+            toast.success('Product added successfully! Check it out on the Shop page');
+
     
           })
-          .catch((error) => alert(error.message));
-      };
-    
+          .catch((error) => {
+            toast.error(`Make sure to fill out all the required fields!!`);
+        });
+};
    
 
     return (
@@ -293,6 +298,8 @@ const SellProd = () => {
             </div>
 
             <button className='mainbutton1'>Save Changes</button> */}
+            <ToastContainer hideProgressBar={true}
+      />
         </div>
     )
 }
