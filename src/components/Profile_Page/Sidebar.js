@@ -3,7 +3,7 @@ import './Sidebar.css';
 import profilepic from "../../images/profilepic.png";
 import { Link } from 'react-router-dom';
 
-export const Sidebar = ({ currentSection, setCurrentSection }) => {
+const Sidebar = ({ currentSection, setCurrentSection }) => {
   return (
     <div className='usersidebar'>
       <img className='profpic' src={profilepic} alt='Profile Pic' />

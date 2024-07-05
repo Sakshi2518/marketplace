@@ -9,6 +9,7 @@
   left: 50%; /* Shift it to the right */
   transform: translateX(-50%); /* Center it horizontally */
   font-family: "Poppins", sans-serif;
+  height: 700px;
 }
 
 .orders-page h1 {

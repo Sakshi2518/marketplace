@@ -1,18 +1,19 @@
-
-// ContextCart.js
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cart_product from "./Cart_product";
 import { CartContext } from "./CartProvider";
 import "./Cart.css";
-import Header from "../Home_page/Header.js";
+import Header2 from "../Home_page/Header2.js";
 import { Link } from "react-router-dom";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmationModal from "./Modal";
+import { OrderContext } from "../Profile_Page/OrderContext.js";
+
 const ContextCart = () => {
   const { item, totalAmount } = useContext(CartContext);
+  const { setOrderDetails } = useContext(OrderContext); // Get setOrderDetails from OrderContext
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -23,17 +24,18 @@ const ContextCart = () => {
       setShowModal(true);
     }
   };
+
   const handleConfirm = () => {
     setShowModal(false);
     toast.success("Your order has been confirmed! Check order details.", {
       onClose: () => {
         const userId = "currentUserId"; // Replace with actual user ID
-        const userEmail = "currentUserEmail"; // Replace with actual user email
+        const userEmail = "currentUserEmail@example.com"; // Replace with actual user email
         const checkoutTime = Date.now();
 
-        navigate("/orders", {
-          state: { items: item, userId, userEmail, checkoutTime },
-        });
+        setOrderDetails({ items: item, userId, userEmail, checkoutTime });
+
+        navigate("/profile");
       },
     });
   };
@@ -41,17 +43,10 @@ const ContextCart = () => {
   const handleCancel = () => {
     setShowModal(false);
   };
-  // const handleCheckout = () => {
-  //   const userId = "currentUserId"; // Replace with actual user ID
-  //   const userEmail = "currentUserEmail"; // Replace with actual user email
-  //   const checkoutTime = Date.now();
-
-  //   navigate('/orders', { state: { items: item, userId, userEmail, checkoutTime } });
-  // };
 
   return (
     <div className="cart">
-      <Header />
+      <Header2 />
       <div className="cart-section">
         <div className="cont-shopping">
           <Link to="/products/get">
@@ -115,7 +110,8 @@ const ContextCart = () => {
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
-      <ToastContainer />
+      <ToastContainer hideProgressBar={true}
+      />
     </div>
   );
 };
