@@ -1,4 +1,4 @@
-
+import "./Cart.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
@@ -10,10 +10,15 @@ import "react-toastify/dist/ReactToastify.css";
 const Cart_Product = ({ prod_name, imgUrl, price, delivery, _id }) => {
   const { dispatch, item: cartItems } = useContext(CartContext); // Assuming CartContext provides dispatch and cartItems
   const product = cartItems.find((p) => p._id === parseInt(_id));
+  const deliveryDate = new Date();
+  deliveryDate.setDate(deliveryDate.getDate() + 2);
+  const options = { day: "numeric", month: "long" };
 
   const handleRemove = () => {
     dispatch({ type: "REMOVE_FROM_CART", payload: _id });
     toast.success(`Product "${prod_name}" has been removed!`);
+   
+
   };
   return (
     <tr>
@@ -31,7 +36,9 @@ const Cart_Product = ({ prod_name, imgUrl, price, delivery, _id }) => {
           <span>{prod_name}</span>
         </Link>
       </td>
-      <td>{delivery}</td>
+      <td>
+        {deliveryDate.toLocaleDateString("en-US", options)}
+      </td>
       <td className="cart-price">Rs {price}</td>
       <td className="cart-remove">
         <div>

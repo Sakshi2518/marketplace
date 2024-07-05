@@ -1,10 +1,13 @@
-import React from 'react';
-import './YourOrders.css';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import "./YourOrders.css";
+import { useLocation } from "react-router-dom";
 
 const YourOrders = () => {
   const location = useLocation();
   const { items, userId, userEmail, checkoutTime } = location.state;
+  const deliveryDate = new Date();
+  deliveryDate.setDate(deliveryDate.getDate() + 2);
+  const options = { day: "numeric", month: "long" };
 
   return (
     <div className="orders-page">
@@ -22,7 +25,7 @@ const YourOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {items.map(item => (
+          {items.map((item) => (
             <tr key={item._id}>
               <td>
                 <img
@@ -33,7 +36,7 @@ const YourOrders = () => {
               </td>
               <td>{item.prod_name}</td>
               <td>Rs.{item.price.toFixed(2)}</td>
-              <td>{item.delivery}</td>
+              <td>{deliveryDate.toLocaleDateString("en-US", options)}</td>
             </tr>
           ))}
         </tbody>
