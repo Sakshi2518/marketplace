@@ -7,7 +7,7 @@ const connectDB = require("./ProductsDB");
 require("dotenv").config();
 
 const User = require("./Users");
-const Product = require("./Products");
+const Products = require("./Products");
 
 const app = express();
 const port = 4000;
@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
 app.post("/products/add", authenticateToken, async (req, res) => {
   const { productDetail } = req.body;
   try {
-    const product = new Product({
+    const product = new Products({
       ...productDetail,
       userID: req.user.userID,
     });
@@ -87,7 +87,7 @@ app.post("/products/add", authenticateToken, async (req, res) => {
 // Endpoint to fetch all products for the logged-in user
 app.get("/products/get", authenticateToken, async (req, res) => {
   try {
-    const products = await Product.find({ userID: req.user.userID });
+    const products = await Products.find({ userID: req.user.userID });
     res.status(200).send(products);
   } catch (err) {
     res.status(500).send(err.message);
