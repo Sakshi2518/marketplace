@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
-//import user from "../../images/user.svg";
-import { json, Link } from "react-router-dom";
 
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from "../Cart_page/CartProvider";
 
 export default function Header(){
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+//   const { loginWithRedirect } = useAuth0();
+//   const { logout } = useAuth0();
+//   const { user, isAuthenticated, isLoading } = useAuth0();
   const { item } = useContext(CartContext);
-console.log(user);
+
     return(
 
      <nav className="navbar">
@@ -33,30 +31,12 @@ console.log(user);
         <a href="#contact-section"><span>Contact</span></a>
     </div>
     </div>
-  
-    
-
-        {/* <div className="nav-search">
-        <input type="text" id="searchbox" value="Search for an item"></input>
-        <i className="fa fa-search"></i>
-        </div> */}
-
-        {/*<div className="nav-icons">*/}
-            
       
-        
-       
        
       <div className="auth-button-container">
-            {isAuthenticated ? (
-                <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                    Logout
-                </button>
-            ) : (
-                <button className="auth-button" onClick={() => loginWithRedirect()}>
-                    Login
-                </button>
-            )}
+       <button className="auth-button">
+        Login
+       </button>
         </div>
         {/*</div>*/}
         

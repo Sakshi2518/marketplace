@@ -1,58 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
 
-function Register() {
-  const history = useNavigate();
+
+const Signup = ({ setToken }) => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  async function submit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("http://localhost:4000/register", {
+      const response = await axios.post("http://localhost:4000/signup", {
+        username,
         email,
         password,
       });
-
-      if (response.data === "exist") {
-        alert("User already exists");
-      } else if (response.data === "notexist") {
-        history.push("/home", { state: { id: email } });
-      }
-    } catch (error) {
-      alert("Registration failed. Please check your details and try again.");
-      console.error("Registration error:", error);
+      setToken(response.data.token);
+      setError("");
+    } catch (err) {
+      setError("Error creating account");
     }
-  }
+  };
 
   return (
-    <div className="login">
-      <h1>Signup</h1>
-      <form onSubmit={submit}>
+    <div>
+      <h2>Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <input
           type="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
         />
         <input
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Signup</button>
       </form>
-      <br />
-      <p>OR</p>
-      <br />
-      <Link to="/login">Login Page</Link>
+      {error && <p>{error}</p>}
     </div>
   );
-}
+};
 
-export default Register;
+export default Signup;
