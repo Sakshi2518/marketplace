@@ -20,7 +20,6 @@
   .Addprod-heading {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 20px 0px;
     font-family: Work Sans;
   }
   
@@ -39,6 +38,13 @@
   .Addprod-form form div p {
     margin: 0 0 5px 0;
   }
+
+  .img-head{
+    margin: 0px !important;
+  }
+  .img-div{
+    margin: 0px 10px!important;
+  }
   
   .Addprod-form form input,
   .Addprod-form form select 
@@ -53,28 +59,113 @@ textarea::placeholder {
     font-family: work sans;
 }
 
-  .pic-upload{
-    display: flex;
-    gap: 10px;
-    margin: 0px !important;
-
-
-    input{
-        width: 600px !important;
-    }
+.pic-container{
+  display: inline;
+  
 }
-     
- .pic-upload button{
-    font-family: Work Sans;
-    padding: 5px;
-    background-color: #1d1d2b;
-    color: #ffffff;   
-    font-family: Work Sans;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100px !important;
+
+.pic-upload{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 0px !important;
-    }
+    background-color: white;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.pic-upload input{
+  width: 600px !important;
+  background-color: white;
+  opacity: 0;
+  padding: 0 !important;
+}
+
+.alt-images-container, .main-image-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  width: 10% !important;
+  margin: 0px 0px 2px 0px !important;
+}
+
+.alt-image, .main-img {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+
+.main-img img,
+.alt-image img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    padding: 0px !important;
+}
+
+
+.main-img .btn, .alt-image .btn {
+  padding: 0px;
+  width: auto;
+  height: 20px !important;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: black;
+}
+
+.main-image-container .btn:hover,
+.alt-images-container .btn:hover,
+.pic-upload label:hover {
+  background-color:#dfe9f5;
+}
+
+
+#input-file , #alt-input-file {
+  display: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  top: -100px !important;
+  }
+
+.add-photo-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #88bcdd;
+  justify-content: end;
+  align-content: end;
+}
+
+.add-photo-label:hover{
+  background-color: #3c3c5e !important;
+}
+
+.pic-upload label {
+  font-family: Work Sans;
+  padding: 5px;
+  background-color: #1d1d2b;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 100px !important;
+  border-top: 3px solid #444469f6;
+  border-left: 3px solid #444469f6;
+  margin-left: 2px;
+}
+
+.input-container{
+  margin: 2px !important;
+}
+
+
+
+
   
   
   .prod-price-cat {
@@ -170,7 +261,7 @@ textarea::placeholder {
       width: 270px !important;
     }
   
-    .pic-upload button {
+    .pic-upload label {
       width: 70px !important;
       font-size: 10px !important;
       padding: 0px !important;

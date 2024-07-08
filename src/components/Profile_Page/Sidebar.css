@@ -17,10 +17,10 @@
 
 
 .usersidebar .s1:hover{
-    background-color: rgb(65, 65, 255);
+    background-color: #dfe9f5a1;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: black;
 }
 
 
@@ -28,6 +28,7 @@
     background-color: var(--col1);
     border-radius: 5px;
     cursor: pointer;
+    background-color: #34344D;
     color: white;
 }
 @media (max-width: 800px) {

@@ -59,10 +59,12 @@
   font-size: 45px;
   font-weight: 350;
   position: sticky;
+  text-align: left;
 }
 .order-summary h1 {
   font-size: 24px;
   font-weight: 500;
+  text-align: left;
 }
 .cart-table {
   max-height: 300px;
@@ -109,15 +111,11 @@
   
 }
 .cart-table th,
-.cart-table td{
+.cart-table td,.order-summary td {
   padding: 12px;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   text-align: left;
-}
-.order-summary td {
-  padding: 12px;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
+  border: none !important;
 }
 .cart-table th {
   background-color: #f8f8f8;
@@ -163,7 +161,7 @@
   margin-top: 10px;
   font-size: 20px;
   letter-spacing: 4px ;
-  /* font-family: "Poppins", sans-serif; */
+  /* c */
   font-family: "Libre Baskerville", serif;
   font-weight: 60;
 }
@@ -189,5 +187,55 @@
   .cart-table,
   .order-summary {
     width: 100%;
+  }
+}
+/* Specific responsiveness for iPhone 14 Pro Max */
+@media (max-width: 430px) {
+  .cart-and-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+.main-cart-sec {
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+  .cart-table,
+  .order-summary {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cart-table table,
+  .order-summary table {
+    width: 100%;
+    margin: 0;
+  }
+/* .cart-table tr,.order-summary tr{
+  width: 80vw;
+} */
+  .cart-table table th,
+  .cart-table table td,
+  .order-summary table th,
+  .order-summary table td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .cart-table img {
+    width: 20px;
+    height: auto;
+  }
+
+  .order-summary {
+    padding: 15px;
+  }
+
+  .checkout-button {
+    width: 100%;
+    padding: 10px;
   }
 }

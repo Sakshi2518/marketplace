@@ -1,15 +1,13 @@
-
-/* Apply scroll snapping to the container of your sections */
 html {
-  overflow-y: scroll; /* Enable vertical scrolling */
+  overflow-y: scroll; 
   scroll-snap-type: y mandatory; 
-  scroll-behavior: smooth;/* Enable mandatory snapping on the y-axis */
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Define the behavior for each section */
 section {
   scroll-snap-align: center;
-  height: 100vh; /* Snap the start of each section to the top of the container */
+  height: 100vh; 
 }
 
 * {
@@ -18,6 +16,19 @@ section {
   box-sizing: border-box;
 }
 
+@media (max-width: 1024px) {
+  section {
+    scroll-snap-align: start;
+  }
+}
 
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: none; 
+  }
 
-
+  section {
+    height: auto;
+    height: 100vh;
+  }
+}

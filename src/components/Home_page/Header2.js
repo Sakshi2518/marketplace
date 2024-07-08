@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
-
 import { Link } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from "../Cart_page/CartProvider";
+import { FaShoppingCart } from "react-icons/fa"; 
 
-export default function Header(){
-//   const { loginWithRedirect } = useAuth0();
-//   const { logout } = useAuth0();
-//   const { user, isAuthenticated, isLoading } = useAuth0();
+
+export default function Header2(){
+  
   const { item } = useContext(CartContext);
 
     return(
@@ -34,19 +32,24 @@ export default function Header(){
   
     
 
-   
+    <div className="nav-icons">
+        <Link to="/shop/cart" className="cart-link">
+          <FaShoppingCart size={24} />
+          {item.length > 0 && <span className="cart-count">{item.length}</span>}
+        </Link>
+        <Link to="/profile">
+          <span>
+            <img src="" alt="user" />
+          </span>
+        </Link>
+      </div>
             
       
+
         
        
        
-       
-      <div className="auth-button-container">
-       <button className="auth-button">
-        Login
-       </button>
-        </div>
-        {/*</div>*/}       
+      
       
       
     </nav>
