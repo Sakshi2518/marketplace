@@ -13,7 +13,10 @@ const Login = ({ setToken }) => {
         email,
         password,
       });
-      setToken(response.data.token);
+      const token = response.data.token;
+      console.log("Token:", token); 
+      localStorage.setItem("token", token); // Store token in localStorage
+      setToken(token); // Set token in the application's state
       setError("");
     } catch (err) {
       setError("Invalid email or password");

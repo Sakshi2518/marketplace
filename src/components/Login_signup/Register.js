@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
+
 const Signup = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -16,10 +17,14 @@ const Signup = ({ setToken }) => {
         email,
         password,
       });
-      setToken(response.data.token);
+      const token = response.data.token;
+      console.log(token);
+      localStorage.setItem("token", token); // Store token in localStorage
+      setToken(token); // Set token in the application's state
       setError("");
     } catch (err) {
       setError("Error creating account");
+      console.error(err);
     }
   };
 

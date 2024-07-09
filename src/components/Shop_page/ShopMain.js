@@ -19,13 +19,22 @@ function ShopMain() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("/products/get");
+        // Retrieve the token from localStorage (or any other storage you use)
+        const token = localStorage.getItem('token');
+         console.log("Token:", token); 
+        const { data } = await axios.get("http://localhost:4000/products/get", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
         setProducts(data);
       } catch (error) {
         setError(error.message);
         console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
   }, []);
 
