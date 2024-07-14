@@ -1,163 +1,123 @@
-/* about section */
-#about-section{
-    background-color: white;
-    color:#1d1d2b;
+.team-top {
+  height: 13vh;
+}
+
+.member-heading {
+  max-height: 70vh;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  position: relative;
+  text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5);
+}
+
+.member-heading::before,
+.member-heading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 70%;
+  height: 1px;
+  background-color: white;
+}
+
+.member-heading::before {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.member-heading::after {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.team-intro {
+  max-height: 70vh;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5);
+}
+
+.member-pic {
+  width: 150px;
+  height: 200px;
+  border-radius: 100%;
+  padding: 15px 2px;
+}
+
+.members {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  border: 1px solid;
+  width: 20%;
+  height: 19rem;
+  margin: 10px;
+}
+
+.member-info h2 {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.member-info h3 {
+  font-weight: 350;
+  font-size: 18px;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .member-info {
+    width: 30%;
   }
-  
-  .about-us{
-    padding-top: 55px;
-    display: flex;
-    flex-direction: column;
-    align-self:center ;
-    text-align: center;
-  
-    h2{
-      font-family: Work Sans;
-      font-size: 30px;
-      font-weight: 500;
-    }
+}
+
+@media (max-width: 992px) {
+  .member-info {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  #team-section{
+    margin-left: 120px;
+  }
+  .team-top {
+    height: 30vh !important;
+  }
+  .member-info {
+    width: 90%;
   }
 
-  
-  .about-content {
-    display: flex;
-    gap: 20px;
-   align-self: center; 
-   font-size: 17px;
-   text-align: justify;
-   padding: 20px;
-   font-family: Merriweather;   
-   list-style-type: none;
-   list-style: none;
-   padding-top: 20px;
+  .member-pic {
+    width: 120px;
+    height: 160px;
   }
-  ul{
-    list-style-type: none;
-    list-style: none;
-  }
-  .about-content li::before{
-    list-style-type: none;
-    list-style: none;
-  }
+}
 
-  .about-content ul{
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    height: 250px;
-    width: 1200px;
-    list-style-type: none;
-    list-style: none;
-  }
-
-  .about-content li{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    flex: 1;
-    text-align: baseline;
-    border: 1px solid rgb(28, 0, 72);
-    border-width: 2px;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: flex-end;
-    background-color: whitesmoke;
-    color: black;
-    list-style-type: none;
-    list-style: none;
-  } 
-
-  .about-content img{
-    display: block;
-    height: 6rem;
-    width: 6rem;
-    justify-content: center;
-    justify-items: center;
-    margin-bottom: 38px;
-    margin-left: 65px;
-    list-style: none;
-    list-style-type: none;
-  }
-  
-  
+@media (max-width: 576px) {
   .member-heading {
-    margin-top: 50px;
-    padding: 10px;
-    font-size: 25px;
-    text-align: center;
-    font-family: Work Sans;
-    position: relative; 
-    text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5); 
-  
+    font-size: 24px;
   }
 
-  
-  .member-heading::before,
-  .member-heading::after {
-    content: ''; 
-    position: absolute; 
-    top: 50%; 
-    width: 70%; 
-    height: 1px; 
-    background-color:white; 
-  }
-  
-  .member-heading::before {
-    left: 0; 
-    transform: translate(-50%, -50%); }
-  
-  .member-heading::after {
-    right: 0;
-    transform: translate(50%, -50%); 
+  .team-intro {
+    font-size: 18px;
   }
 
-  .team-intro{
-    max-height: 70vh;
-    padding: 10px;
-    font-size: 20px;
-    text-align: center;
-    font-family: Merriweather;
-    text-shadow: 2px 2px 4px rgba(254, 254, 254, 0.5);
+  .member-info {
+    width: 100%;
   }
-  
-  
-  .member-pic{
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    padding: 15px 2px;
-   }
-  
-  .members{
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    padding-bottom: 30px;
-  }
-  
-  .member-info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Merriweather;
-    border: 1px solid;
-    width: 20%;
-    height: 19rem;
-  
-    h2{
-      font-weight: 400;
-      font-size: 20px;
-    }
-  
-    h3{
-      font-weight: 350;
-      font-size: 18px;
-    }
-  }
-  
-  
-  
-  
-  
+}
