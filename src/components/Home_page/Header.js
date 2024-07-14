@@ -47,7 +47,7 @@ export default function Header(){
        
        
       <div className="auth-button-container">
-            {isAuthenticated ? (
+            {/*{isAuthenticated ? (
                 <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
                     Logout
                 </button>
@@ -55,7 +55,12 @@ export default function Header(){
                 <button className="auth-button" onClick={() => loginWithRedirect()}>
                     Login
                 </button>
-            )}
+            )}*/}
+
+            <div className="explore">
+                <Link to="/login"><button className="auth-button">Login</button></Link>
+            </div>
+
         </div>
         {/*</div>*/}       
       
