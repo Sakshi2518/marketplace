@@ -1,0 +1,60 @@
+.register_page {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.register_page h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register_page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register_page input[type="email"],
+.register_page input[type="password"] {
+    width: 360px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.register_page button {
+    width: 360px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register_page button:hover {
+    background-color: #0056b3;
+}
+
+.register_page p {
+    font-size: 16px;
+    
+}
+
+.register_page a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register_page a:hover {
+    text-decoration: underline;
+}
+
