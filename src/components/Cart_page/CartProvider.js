@@ -18,6 +18,7 @@ const CartProvider = ({ children }) => {
 
   // Calculate total amount
   const totalAmount = state.item.reduce((total, item) => total + item.price, 0);
+  
 
   return (
     <CartContext.Provider value={{ ...state, totalAmount, dispatch }}>

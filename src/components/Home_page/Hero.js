@@ -1,8 +1,6 @@
 import React from "react"
 import rocket from '../../images/rocket.mp4';
 
-
-
 export default function Hero(){
     return(
         <div className="--landingpg">

@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-
 import { Link } from "react-router-dom";
 import { CartContext } from "../Cart_page/CartProvider";
+import { FaShoppingCart } from "react-icons/fa"; 
 
-export default function Header(){
 
+export default function Header2(){
+  
   const { item } = useContext(CartContext);
 
     return(
@@ -31,37 +32,24 @@ export default function Header(){
   
     
 
-   
+    <div className="nav-icons">
+        <Link to="/shop/cart" className="cart-link">
+          <FaShoppingCart size={24} />
+          {item.length > 0 && <span className="cart-count">{item.length}</span>}
+        </Link>
+        <Link to="/profile">
+          <span>
+            <img src="" alt="user" />
+          </span>
+        </Link>
+      </div>
             
       
+
         
        
        
-       
-      <div className="auth-button-container">
-
-            {/*{isAuthenticated ? (
-                <button className="auth-button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                    Logout
-                </button>
-            ) : (
-                <button className="auth-button" onClick={() => loginWithRedirect()}>
-                    Login
-                </button>
-            )}*/}
-
-{/* <div className="explore">
-                <Link to="/login"><button className="auth-button">Login</button></Link>
-            </div>*/}
-
-
-       <Link to='/login'>
-       <button className="auth-button">
-        Login
-       </button></Link>
-
-        </div>
-        {/*</div>*/}       
+      
       
       
     </nav>

@@ -1,46 +1,53 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Auth0Provider } from "@auth0/auth0-react";
+import React, { useState, useEffect }from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from './Homepage';
 import ShopMain from './components/Shop_page/ShopMain';
 import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
-import { CartProvider, Cart } from './components/Cart_page/CartProvider';
+import { CartProvider } from './components/Cart_page/CartProvider';
+import ContextCart from './components/Cart_page/ContextCart'; // Import ContextCart
+//import YourOrders from './components/Profile_Page/YourOrders'; // Import YourOrders
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import Profile from './components/Profile_Page/Profile';
-import YourOrders from './components/Profile_Page/YourOrders';
-import Header from './components/Home_page/Header'
-
-//import SellProd from './components/Profile_Page/SellProd';
+import { OrderProvider } from './components/Profile_Page/OrderContext';
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+  };
   return (
-    <Auth0Provider
-       domain="dev-a3h42errc2tx6ec7.us.auth0.com"
-       clientId="X9Y7bGmi4qZU9D6m7nqQq6vVBsunbaRF"
-       authorizationParams={{
-      redirect_uri: window.location.origin
-      }}
-    >
+   
       <Container>
         <BrowserRouter>
           <CartProvider>
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/products/get" element={<ShopMain />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/shop/cart" element={<Cart />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/products/add" element={<Profile />} />
-              <Route path="/orders" element={<YourOrders />} />
-            </Routes>
+            <OrderProvider>
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/products/get" element={<ShopMain />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/shop/cart" element={<ContextCart />} />
+                <Route path="/signup" element={<Register  setToken={setToken}/>} />
+                <Route path="/login" element={<Login setToken={setToken} />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/products/add" element={<Profile />} />
+                <Route path="/user/yourorders" element={<Profile />} /> 
+              </Routes>
+            </OrderProvider>
           </CartProvider>
-          <ToastContainer 
+          <ToastContainer
             position="top-right"
             autoClose={2000}
             hideProgressBar={true}
@@ -53,7 +60,6 @@ function App() {
           />
         </BrowserRouter>
       </Container>
-    </Auth0Provider>
   );
 }
 

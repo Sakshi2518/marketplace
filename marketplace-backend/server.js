@@ -1,19 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer'); // Include nodemailer module
-const Products = require('./Products');
-const connectDB = require('./ProductsDB');
-require('dotenv').config();
+
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const connectDB = require("./ProductsDB");
+require("dotenv").config();
 const UserModel=require('./models/Users');
 const connect2DB = require('./models/UsersDB');
-
+const User = require("./Users");
+const Products = require("./Products");
 
 const app = express();
 const port = 4000;
-
-
-///////////
 
 const env = process.env.NODE_ENV || 'development';
 const uri = env === 'production' ? process.env.MONGO_URI : process.env.MONGO_URI2;
@@ -62,46 +61,81 @@ app.post('/register',(req,res)=>{
 /////////////
 
 
-app.post('/products/add', async (req, res) => {
-  const productDetail = req.body;
+// Middleware to authenticate JWT tokens
+const authenticateToken = (req, res, next) => {
+  const token = req.headers["authorization"]?.split(" ")[1];
+  if (!token) return res.sendStatus(401);
 
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+};
+
+// Endpoint to register a new user
+app.post("/signup", async (req, res) => {
+  const {  username, email, password } = req.body;
   try {
-    const data = await Products.create(productDetail);
-    res.status(201).send(data);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+    await user.save();
+    const token = jwt.sign(
+      { userID: user._id },
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    res.status(201).json({ token });
   } catch (err) {
     res.status(500).send(err.message);
-    console.log(err);
   }
 });
 
-app.get('/products/get', async (req, res) => {
+// Endpoint to login a user
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const products = await Products.find({});
+    const user = await User.findOne({ email });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(400).send("Invalid email or password");
+    }
+    const token = jwt.sign(
+      { userID: user._id },
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    res.json({ token });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// Endpoint to add a new product
+app.post("/products/add", authenticateToken, async (req, res) => {
+  const { productDetail } = req.body;
+  try {
+    const product = new Products({
+      ...productDetail,
+      userID: req.user.userID,
+    });
+    await product.save();
+    res.status(201).send(product);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// Endpoint to fetch all products for the logged-in user
+app.get("/products/get", authenticateToken, async (req, res) => {
+  try {
+    const products = await Products.find({ userID: req.user.userID });
     res.status(200).send(products);
   } catch (err) {
     res.status(500).send(err.message);
-    console.log(err);
   }
 });
 
-app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
-
-  let mailOptions = {
-    from: email, // Use user's email as the sender
-    to: 'igmarketplace.help@gmail.com', // Replace with your help email address
-    subject: 'New Contact Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).send('Email sent successfully');
-  } catch (err) {
-    res.status(500).send(err.message);
-    console.log(err);
-  }
-});
-
-
-app.listen(port, () => console.log('Server is running on port', port));
+app.listen(port, () => console.log("Listening on port", port));
