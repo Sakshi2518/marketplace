@@ -2,7 +2,6 @@
 
 import React, { createContext, useReducer } from "react";
 import ContextCart from "./ContextCart";
-// Import the reducer
 import { reducer } from "./reducer";
 
 export const CartContext = createContext();
@@ -13,10 +12,8 @@ const initialState = {
 };
 
 const CartProvider = ({ children }) => {
-  // Using useReducer for state management
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Calculate total amount
   const totalAmount = state.item.reduce((total, item) => total + item.price, 0);
   
 

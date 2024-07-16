@@ -1,111 +1,134 @@
-// import React, { useState, useContext } from "react";
-// import { useParams } from "react-router-dom";
-// //import prodData from "../Alldata/prodData";
-// import "./ProductDetails.css";
-// import Header from "../Home_page/Header";
-// import { FaShoppingCart } from "react-icons/fa";
-// import { CartContext } from '../Cart_page/CartProvider';
-// import { toast, ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from 'axios'
+import "./ProductDetails.css";
+import Header from "../Home_page/Header";
+import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from '../Cart_page/CartProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// const ProductDetails = () => {
-//   // const { _id } = useParams();
-//   // const [mainImage, setMainImage] = useState(product?.imgUrl || '');
-//   // const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
-//   // const [showFullDescription, setShowFullDescription] = useState(false);
-//   // const { dispatch, item: cartItems } = useContext(CartContext);
+const ProductDetails = () => {
+    const { _id } = useParams(); // useParams to access the _id parameter
+    const [product, setProduct] = useState(null);
+    const [isLoading, setIsLoading] = useState(true)
 
-//   // if (!product) {
-//   //   return <div>Product not found</div>;
-//   // }
+  const [mainImage, setMainImage] = useState(product?.imgUrl || '');
+  const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const { dispatch, item: cartItems } = useContext(CartContext);
 
-//   // const isInCart = cartItems.some(item => item._id === product._id);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:4000/products/${_id}`);
+        setProduct(data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-//   // const handleAddToCart = () => {
-//   //   if (isInCart) {
-//   //     toast.error(`Product "${product.prod_name}" is already in the cart!`);
-//   //   } else {
-//   //     dispatch({ type: 'ADD_TO_CART', payload: product });
-//   //     toast.success(`Product "${product.prod_name}" has been added to the cart!`);
-//   //   }
-//   // };
+    fetchProduct();
+  }, [_id]);
 
-//   // const handleImageClick = (imgUrl) => {
-//   //   setMainImage(imgUrl);
-//   //   setClickedImage(imgUrl);
-//   // };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-//   // const toggleDescription = () => {
-//   //   setShowFullDescription(!showFullDescription);
-//   // };
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
-//   // const truncatedDescription = product.description.substring(0, 70) + "...";
 
-//   // return (
-//   //   <div>
-//   //     <Header />
-//   //     <div className="single-product">
-//   //       <div className="prod-images">
-//   //         <div className="main-image">
-//   //           <img src={mainImage} alt={product.prod_name} />
-//   //         </div>
-//   //         <div className="alt-images">
-//   //           {product.altImages.map((imgUrl, index) => (
-//   //             <img
-//   //               key={index}
-//   //               src={imgUrl}
-//   //               alt={`${product.prod_name} ${index + 1}`}
-//   //               onClick={() => handleImageClick(imgUrl)}
-//   //               className={clickedImage === imgUrl ? "clicked" : ""}
-//   //             />
-//   //           ))}
-//   //         </div>
-//   //       </div>
-//   //       <div className="prod-description">
-//   //         <h1 className="product-name">{product.prod_name}</h1>
-//   //         <p className="delivery">Delivery: {product.delivery}</p>
+  const isInCart = cartItems.some(item => item._id === product._id);
 
-//   //         <p>
-//   //           <strong>User rating:</strong> {product.acc_rating}
-//   //         </p>
-//   //         <p>
-//   //           <strong>Category:</strong> {product.category}
-//   //         </p>
-//   //         <p>
-//   //           <strong>Dimensions:</strong> {product.dimensions}
-//   //         </p>
-//   //         <p>
-//   //           <strong>Material:</strong> {product.material}
-//   //         </p>
-//   //         <hr />
-//   //         <h3>Description</h3>
-//   //         <p>
-//   //           {showFullDescription ? product.description : truncatedDescription}
-//   //           <span onClick={toggleDescription} className="toggle-description">
-//   //             {showFullDescription ? " Read Less" : " Read More"}
-//   //           </span>
-//   //         </p>
-//   //         <hr />
-//   //         <div className="price-row">
-//   //           <div className="price">
-//   //             <strong>Price:</strong>{" "}
-//   //             <span className="price-value">Rs.{product.price}</span>
-//   //           </div>
-//   //           <div className="original-price">
-//   //             <span className="original-price-value">
-//   //               ( <del> Rs.{product.origPrice}</del> )
-//   //             </span>
-//   //           </div>
-//   //           <button className="add-to-cart" onClick={handleAddToCart}>
-//   //             {isInCart ? "Already in Cart" : "Add to Cart"} <FaShoppingCart />
-//   //           </button>
-//   //         </div>
-//   //         <p>{product.rentavailibility}</p>
-//   //       </div>
-//   //     </div>
-//   //     <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-//   //   </div>
-//   // );
-// };
+  const handleAddToCart = () => {
+    if (isInCart) {
+      toast.error(`Product "${product.prod_name}" is already in the cart!`);
+    } else {
+      dispatch({ type: 'ADD_TO_CART', payload: product });
+      toast.success(`Product "${product.prod_name}" has been added to the cart!`);
+    }
+  };
 
-// export default ProductDetails;
+  const handleImageClick = (imgUrl) => {
+    setMainImage(imgUrl);
+    setClickedImage(imgUrl);
+  };
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const truncatedDescription = product.description.substring(0, 70) + "...";
+
+  return (
+    <div>
+      <Header />
+      <div className="single-product">
+        <div className="prod-images">
+          <div className="main-image">
+            <img src={mainImage} alt={product.prod_name} />
+          </div>
+          <div className="alt-images">
+            {product.altImages.map((imgUrl, index) => (
+              <img
+                key={index}
+                src={imgUrl}
+                alt={`${product.prod_name} ${index + 1}`}
+                onClick={() => handleImageClick(imgUrl)}
+                className={clickedImage === imgUrl ? "clicked" : ""}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="prod-description">
+          <h1 className="product-name">{product.prod_name}</h1>
+          <p className="delivery">Delivery: {product.delivery}</p>
+
+          <p>
+            <strong>User rating:</strong> {product.acc_rating}
+          </p>
+          <p>
+            <strong>Category:</strong> {product.category}
+          </p>
+          <p>
+            <strong>Dimensions:</strong> {product.dimensions}
+          </p>
+          <p>
+            <strong>Material:</strong> {product.material}
+          </p>
+          <hr />
+          <h3>Description</h3>
+          <p>
+            {showFullDescription ? product.description : truncatedDescription}
+            <span onClick={toggleDescription} className="toggle-description">
+              {showFullDescription ? " Read Less" : " Read More"}
+            </span>
+          </p>
+          <hr />
+          <div className="price-row">
+            <div className="price">
+              <strong>Price:</strong>{" "}
+              <span className="price-value">Rs.{product.price}</span>
+            </div>
+            <div className="original-price">
+              <span className="original-price-value">
+                ( <del> Rs.{product.origPrice}</del> )
+              </span>
+            </div>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              {isInCart ? "Already in Cart" : "Add to Cart"} <FaShoppingCart />
+            </button>
+          </div>
+          <p>{product.rentavailibility}</p>
+        </div>
+      </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+    </div>
+  );
+};
+
+export default ProductDetails;

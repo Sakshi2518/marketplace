@@ -151,7 +151,7 @@ const SellProd = () => {
               {/*<div className="alt-images-container">
                   {altImages.map((image, index) => (
                     <div key={index} className="alt-image">
-                      <img src={image} alt={`Alt ${index}`} />
+                      <img src={image} alt={Alt ${index}} />
                       <button type="button" onClick={() => removeImage(index)}>
                         Delete
                       </button>

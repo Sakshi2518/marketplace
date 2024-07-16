@@ -62,7 +62,7 @@
   margin: 5px;
   border-radius: 200px 20px 200px 20px;
   box-shadow: 0px 0px 5px 5px #d8d8d986;
-
+  width: 50%;
   /* flex: 2 1 400px;
   min-width: 300px; */
   display: flex;
@@ -156,9 +156,6 @@
   cursor: pointer;
 }
 
-/* .prod-description del {
-  color: red;
-} */
 
 .toggle-description {
   color: rgba(0, 0, 0, 0.436);
@@ -168,7 +165,7 @@
 }
 
 .description-text {
-  word-wrap: break-word; /* Ensure text wraps within the container */
+  word-wrap: break-word; 
 }
 
 @media (max-width: 768px) {
