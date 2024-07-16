@@ -1,6 +1,7 @@
 import React, { useState, useEffect }from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from './Homepage';
+import Dashboard from "./components/Home_page/Dashboard";
 import ShopMain from './components/Shop_page/ShopMain';
 import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
@@ -15,19 +16,8 @@ import Profile from './components/Profile_Page/Profile';
 import { OrderProvider } from './components/Profile_Page/OrderContext';
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken("");
-  };
+  
+  
   return (
    
       <Container>
@@ -36,11 +26,12 @@ function App() {
             <OrderProvider>
               <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/products/get" element={<ShopMain />} />
-                <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/shop/cart" element={<ContextCart />} />
-                <Route path="/signup" element={<Register  setToken={setToken}/>} />
-                <Route path="/login" element={<Login setToken={setToken} />} />
+                <Route path="/products/:_id" element={<ProductDetails/>} />
+                <Route path="/signup" element={<Register/>} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/products/add" element={<Profile />} />
                 <Route path="/user/yourorders" element={<Profile />} /> 

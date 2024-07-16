@@ -6,12 +6,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ item }) => {
-  const { _id, imgUrl, prod_name, price, origPrice } = item; // Adjusted to use _id
+  const { _id, imgUrl, prod_name, price, origPrice } = item; 
   const { dispatch, item: cartItems } = useContext(CartContext);
 
- 
   const handleAddToCart = () => {
-    const existingItem = cartItems.find(cartItem => cartItem._id === item._id); // Adjusted to use _id
+    const existingItem = cartItems.find(cartItem => cartItem._id === item._id);
     if (existingItem) {
       toast.error(`Product "${prod_name}" is already in the cart!`);
     } else {
@@ -20,17 +19,15 @@ const Card = ({ item }) => {
     }
   };
 
-  const existingItem = cartItems.find(cartItem => cartItem._id === item._id); 
+  const existingItem = cartItems.find(cartItem => cartItem._id === item._id);
   const options = { day: 'numeric', month: 'long' };
 
   const deliveryDate = new Date();
   deliveryDate.setDate(deliveryDate.getDate() + 2);
 
-
-
   return (
     <div className="product-section">
-      <Link to={`/product/${_id}`} className="product-link"> {/* Adjusted to use _id */}
+      <Link to={`/products/${_id}`} className="product-link"> 
         <div className="prod-img">
           <img src={imgUrl} alt={prod_name} className="ev-img" />
         </div>
