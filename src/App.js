@@ -14,7 +14,7 @@ import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import Profile from './components/Profile_Page/Profile';
 import { OrderProvider } from './components/Profile_Page/OrderContext';
-
+import WelcomeBack from "./components/Link_page/welcome";
 function App() {
   
   
@@ -35,6 +35,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/products/add" element={<Profile />} />
                 <Route path="/user/yourorders" element={<Profile />} /> 
+                <Route path= "/login/welcome" element={<WelcomeBack/>}/>
               </Routes>
             </OrderProvider>
           </CartProvider>
