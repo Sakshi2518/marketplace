@@ -23,7 +23,7 @@ const Cart_Product = ({ prod_name, imgUrl, price, delivery, _id }) => {
   return (
     <tr>
       <td className="product-img">
-        <Link to={`/product/${_id}`} className="product-link">
+        <Link to={`/products/${_id}`} className="product-link">
           <img
             src={imgUrl}
             alt="Product Image"

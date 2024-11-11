@@ -1,72 +1,99 @@
-.accountsettings{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+.accountsettings {
+  margin: auto;
+  font-family: Arial, sans-serif;
+  background-color: #9eadcf83;
 }
 
-.accountsettings h1{
-    padding: 10px 20px;
+.mainhead1 {
+  font-size: 30px;
+  padding: 30px 0px;
+  text-align: center;
+  font-family: Work Sans;
+}
+
+.edit-btn-acct {
+  display: flex;
+  margin-left: 37rem;
+  width: 140px;
+  padding: 6px 8px;
+  align-items: center;
+  background-color:  #1d1d2b;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+  font-family: Work Sans;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.edit-btn-acct:hover {
+    background-color: #494968;
+}
+
+.edit-icon {
+  margin-right: 6px; /* Space between icon and text */
+  color: white;
+}
+
+.edit-btn {
+  margin-left: 0.5rem !important;
+  color: white;
+  font-size: 15px !important;
 }
 
 
-.accountsettings .form{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 20px;
+.form-settings {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: merriweather;
+  font-size: 15.3px;
+ 
 }
 
-.accountsettings .form .form-group{
-    display: flex;
-    flex-direction: column;
-    width: 45%;
-    margin: 10px;
+.form-table{
+  justify-content: center;
+  align-items: center;
 }
 
-.accountsettings .form .form-group label{
-    font-size: 1.2rem;
-    font-weight: 300;
-    margin-bottom: 5px;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 90% !important;
 }
 
-.accountsettings .form .form-group input{
-    padding: 10px 20px;
-    border: 1px solid rgb(207, 207, 207);
-    border-radius: 5px;
-    outline: none;
+.form-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
 }
 
-.accountsettings .form .form-group input:focus{
-    border: 1px solid var(--col1);
+.form-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.acct-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: black;
+  margin-left: 5px;
+}
+
+.acct-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 38px;
+}
+
+.full-width .acct-input {
+  width: 100%;
 }
 
 
-
-@media (max-width: 800px){
-    .accountsettings .form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 10px 20px;
-    }
-
-    .accountsettings .form .form-group{
-        display: flex;
-        flex-direction: column;
-        width: 97%;
-        margin: 10px;
-    }
-    .accountsettings h1{
-        font-size: 20px;
-    }
-    .accountsettings .form .form-group label{
-        font-size: 16px;
-        font-weight: 300;
-        margin-bottom: 5px;
-    }
-} 

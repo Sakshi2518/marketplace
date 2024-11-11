@@ -11,22 +11,22 @@ export default function Header2(){
     return(
 
      <nav className="navbar">
-      <a href="home-section">
+      <Link to="/">
         <h3>MARKETPLACE</h3>
-      </a>
+      </Link>
 
     <div className="navbar-heading">
     <div className="explore">
      <Link to="/products/get"><span>Shop</span></Link>
     </div>
     <div className="about">
-        <a href="#explore-section"><span>About</span></a>
+        <Link to="/#explore-section"><span>About</span></Link>
     </div>
     <div className="about">
-        <a href="#team-section"><span>Team</span></a>
+        <Link to="/#team-section"><span>Team</span></Link>
     </div>
     <div className="contact">
-        <a href="#contact-section"><span>Contact</span></a>
+        <Link to="/#contact-section"><span>Contact</span></Link>
     </div>
     </div>
   

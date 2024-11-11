@@ -1,16 +1,16 @@
 .Addprod-container {
     display: flex;
-    justify-content: flex-end;
     overflow-y: auto; /* Enable vertical scrolling */
+    width: 99.99%;
+    background-color:  #9eadcf83;
 
   }
   
   .Addprod-section {
-    width: 760px;
+    width: 800px;
     height: 100%;
-    background-color: #9eadcf83;
+    background-color:  #9eadcf83;
     padding: 30px 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -27,12 +27,12 @@
     display: flex;
     flex-direction: column;
     font-family: merriweather;
+    gap: 20px;
   }
   
   .Addprod-form form div {
     margin: 10px 10px;
-    width: 700px;
-
+    gap: 20px;
   }
   
   .Addprod-form form div p {
@@ -43,7 +43,7 @@
     margin: 0px !important;
   }
   .img-div{
-    margin: 0px 10px!important;
+    margin: 10px 10px!important;
   }
   
   .Addprod-form form input,
@@ -106,7 +106,7 @@ textarea::placeholder {
 }
 
 
-.main-img .btn, .alt-image .btn {
+.main-img .sellprod-btn, .alt-image .sellprod-btn {
   padding: 0px;
   width: auto;
   height: 20px !important;
@@ -116,8 +116,8 @@ textarea::placeholder {
   color: black;
 }
 
-.main-image-container .btn:hover,
-.alt-images-container .btn:hover,
+.main-image-container .sellprod-btn:hover,
+.alt-images-container .sellprod-btn:hover,
 .pic-upload label:hover {
   background-color:#dfe9f5;
 }
