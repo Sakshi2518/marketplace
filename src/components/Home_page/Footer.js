@@ -44,7 +44,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="contact-form">
-                    <form>
+                    <form className="contact-formM">
                         <input
                             type="text"
                             name="name"
@@ -68,7 +68,7 @@ export default function Footer() {
                             onChange={handleInputChange}
                             placeholder="Message"
                         />
-                        <button type="button" onClick={handleRatingSubmit}>Submit</button>
+                        <button type="button" className="footer-btn" onClick={handleRatingSubmit}>Submit</button>
                     </form>
                 </div>
             </div>

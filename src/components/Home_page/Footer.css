@@ -33,7 +33,7 @@
     }
   }
   
-  form{
+.contact-formM{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -54,7 +54,7 @@
       border-color:#34344D;
     }
   
-    button{
+    .footer-btn{
       padding: 5px;
       background-color: white;
       border-color:#34344D;
@@ -62,7 +62,7 @@
       font-family: Work Sans;
     }
   
-    button:hover{
+    .footer-btn:hover{
       background-color: #1d1d2b;
       color: #ffffff;
     }

@@ -62,9 +62,9 @@ export default function Shopheader({
 
   return (
     <nav className="navbar">
-      <a href="home-section">
+      <Link to="/">
         <h3>MARKETPLACE</h3>
-      </a>
+      </Link>
 
       <div className="navbar-heading">
         <div className="navbar-sh">

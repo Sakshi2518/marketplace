@@ -7,15 +7,18 @@ const Sidebar = ({ currentSection, setCurrentSection }) => {
   return (
     <div className='usersidebar'>
       <img className='profpic' src={profilepic} alt='Profile Pic' />
+  
 
       <Link
-        to='/user/accountsettings'
+        to='/profile'
         className='stylenone'
         onClick={() => setCurrentSection('accountsettings')}
       >
-        <div className={currentSection === 'accountsettings' ? 's2' : 's1'}>
-          <span>Account Settings</span>
-        </div>
+        <div>
+        <div className={currentSection === null || currentSection === 'accountsettings' ? 's2' : 's1'}>
+        {/* <div className={currentSection === null ? 's2' : 's1'}> */}
+          <span>Account Settings</span></div>
+        </div> 
       </Link>
 
       <Link

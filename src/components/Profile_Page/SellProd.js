@@ -22,48 +22,51 @@ const SellProd = () => {
     const handleImageChange = (e) => {
       const file = e.target.files[0];
       if (file) {
-        const imageUrl = URL.createObjectURL(file);
-        setImgUrl(imageUrl);
+          setImgUrl(file);
       }
-    };
-  
-    const handleAltImageChange = (e) => {
-      const files = Array.from(e.target.files).slice(0, 2); 
-      const newAltImages = files.map((file) => URL.createObjectURL(file));
-      setAltImages((prevImages) => [...prevImages, ...newAltImages]); // Append new images to existing ones
-    };
-  
+  };
+
+  const handleAltImageChange = (e) => {
+    const files = Array.from(e.target.files).slice(0, 3); 
+    setAltImages((prevImages) => [...prevImages, ...files]);
+};
+
+
+  const removeImage = (index) => {
+    setAltImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
     
-    const removeImage = (index) => {
-      setAltImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    };
 
-    const removeMainImage = () => {
-      setImgUrl("");
-    };
+  const addProduct = (e) => {
+    e.preventDefault();
 
+    if (!imgUrl || altImages.length < 3) {
+        toast.error("Please add a main image and at least 3 additional images.");
+        return;
+    }
 
-    const addProduct = (e) => {
-        e.preventDefault();
-        
-        axios
-          .post("/products/add", {
-            category,
-            condition,
-            prod_name: prodName,
-            imgUrl,
-            altImages: JSON.stringify(altImages),
-            price,
-            origPrice,
-            dimensions,
-            material,
-            description
-          })
-          .then(() => {
+    const formData = new FormData();
+    formData.append("category", category);
+    formData.append("condition", condition);
+    formData.append("prod_name", prodName);
+    formData.append("price", price);
+    formData.append("origPrice", origPrice);
+    formData.append("dimensions", dimensions);
+    formData.append("material", material);
+    formData.append("description", description);
+    formData.append("imgUrl", imgUrl); // add main image file
+    altImages.forEach((file, index) => formData.append(`altImages`, file)); // add all alt images files
+
+    axios
+        .post("/products/add", formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(() => {
+            // Reset fields
             setCategory("Books");
             setCondition("");
             setProdName("");
-            setImgUrl("");
+            setImgUrl(null);
             setAltImages([]);
             setPrice(0);
             setOrigPrice(0);
@@ -71,12 +74,11 @@ const SellProd = () => {
             setMaterial("");
             setDescription("");
 
-            toast.success('Product added successfully! Check it out on the Shop page');
-
-    
-          })
-          .catch((error) => {
-            toast.error(`Make sure to fill out all the required fields!!`);
+            toast.success("Product added successfully! Check it out on the Shop page.");
+        })
+        .catch((error) => {
+            toast.error("Make sure to fill out all the required fields!");
+            console.error(error);
         });
 };
    
@@ -92,7 +94,8 @@ const SellProd = () => {
         </div>
         <div className="Addprod-form">
           <form>
-            <div>
+
+            <div className="addprod-row">
               <p>Product Name</p>
               <input
                 type="text"
@@ -103,99 +106,68 @@ const SellProd = () => {
             </div>
 
             <div className="img-div">
-  <p className="img-head">Main Cover Image (only 1)</p>
-  <div className="pic-container">
-    <div className="pic-upload">
-      <div className="input-container">
-        <input
-          type="file"
-          onChange={handleImageChange}
-          accept="image/jpeg, image/png, image/jpg"
-          id="input-file"
-          placeholder="add url/upload the main cover image"
-          style={{ display: 'none' }}
-        />
-        <label htmlFor="input-file" className="add-photo-label">
-          Add photo 
-          <Icon icon="mdi:camera" width="24" height="24" style={{ color: '#dfe9f5a1' }} />
-        </label>
-      </div>
-      <div className="main-image-container">
-        {imgUrl && (
-          <div className="main-img">
-            <img src={imgUrl} alt="Product Cover" id="profile-pic" />
-            <div className="btn" type="button" onClick={removeMainImage}>
-              <Icon icon="charm:cross" width="20" height="20"className="cross-icon"  style={{ color: '#b80f0f' }} />
-            </div>
-          </div>
-        )}
-      </div>
-    </div> 
-  </div>    
-</div>
-
-            
-              {/*
-              <p>Main Cover Image</p>
-              <div className="pic-upload">
-              <input
-                type="text"
-                onChange={(e) => setAltImages(e.target.value)}
-                value={altImages}
-                placeholder="add url/upload 2-3 extra from different angles"
-              />
-               <label> Add photo </label>
-              </div> 
-              */}
-
-              {/*<div className="alt-images-container">
-                  {altImages.map((image, index) => (
-                    <div key={index} className="alt-image">
-                      <img src={image} alt={Alt ${index}} />
-                      <button type="button" onClick={() => removeImage(index)}>
-                        Delete
-                      </button>
+                     <p className="img-head">Main Cover Image (only 1)</p>
+                       <div className="pic-container">
+                          <div className="pic-upload">
+                            <div className="input-container">
+                            <input
+                              type="file"
+                              onChange={handleImageChange}
+                              accept="image/jpeg, image/png, image/jpg"
+                              style={{ display: 'none' }}
+                              placeholder="add url/upload the main cover image"
+                              id="input-file"
+                          />
+                          <label htmlFor="input-file" className="add-photo-label">
+                            Add photo 
+                            <Icon icon="mdi:camera" width="24" height="24" style={{ color: '#dfe9f5a1' }} />
+                        </label>
+                            </div>
+                        
+                       <div className="main-image-container">
+                       {imgUrl && (
+                            <div className="main-img">
+                                <img src={URL.createObjectURL(imgUrl)} alt="Product Cover" />
+                                <div className="sellprod-btn" type="button" onClick={()=> setImgUrl(null)}>
+                                  <Icon icon="charm:cross" width="20" height="20"className="cross-icon"  style={{ color: '#b80f0f' }} />
+                                </div>
+                            </div>
+                        )}
+                       </div>
+                       </div>
                     </div>
-                  ))}
-                </div>*/}
-
-
-              
-              
+                </div>
 
           <div className="img-div">
-            <p className="img-head">Additional Images (atleast 3)</p>
-                <div className="pic-container">
-                  <div className="pic-upload">
-                    <div className="input-container">
-                      <input
-                        type="file"
-                        onChange={handleAltImageChange}
-                        accept="image/jpeg, image/png, image/jpg"
-                        multiple="multiple"
-                        id="alt-input-file"
-                        placeholder="add url/upload the main cover image"
-                      />
-                      <label htmlFor="alt-input-file" className="add-photo-label">
-                        Add photo 
-                        <Icon icon="mdi:camera" width="24" height="24" style={{ color: '#dfe9f5a1' }} />
-                      </label>
-                    </div>
-                    <div className="alt-images-container">
-                                  {altImages.map((image, index) => (
-                                    <div key={index} className="alt-image">
-                                      <img src={image} alt={`Alt ${index}`} />
-                                      <div className="btn" type="button" onClick={() => removeImage(index)}>
-                                      <Icon icon="charm:cross" width="20" height="20"className="cross-icon"  style={{ color: '#b80f0f' }} />
-                               </div>
-                                </div>
-                                    
-                             ))}
-                              
+              <p className="img-head">Additional Images (at least 3)</p>
+              <div className="pic-container">
+                <div className="pic-upload">
+                  <div className="input-container">
+                  <input
+                      type="file"
+                      onChange={handleAltImageChange}
+                      accept="image/jpeg, image/png, image/jpg"
+                      multiple
+                      style={{ display: 'none' }}
+                      id="alt-input-file"
+                  />
+                  <label htmlFor="alt-input-file" className="add-photo-label">
+                      Add photos 
+                      <Icon icon="mdi:camera" width="24" height="24" style={{ color: '#dfe9f5a1' }} />
+                  </label> </div>
+                  <div className="alt-images-container">
+                      {altImages.map((file, index) => (
+                          <div key={index} className="alt-image">
+                              <img src={URL.createObjectURL(file)} alt={`Alt ${index}`} />
+                              <div className="sellprod-btn" type="button" onClick={() => removeImage(index)}>
+                                  <Icon icon="charm:cross" width="20" height="20" style={{ color: '#b80f0f' }} />
                               </div>
-                  </div> 
-                </div>    
+                          </div>
+                      ))}
+                  </div>
+                  </div>
               </div>
+          </div>
 
                           
             

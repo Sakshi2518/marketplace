@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios'
 import "./ProductDetails.css";
-import Header from "../Home_page/Header";
+import Header2 from "../Home_page/Header2";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from '../Cart_page/CartProvider';
 import { toast, ToastContainer } from 'react-toastify';
@@ -13,25 +13,27 @@ const ProductDetails = () => {
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
 
-  const [mainImage, setMainImage] = useState(product?.imgUrl || '');
-  const [clickedImage, setClickedImage] = useState(product?.imgUrl || '');
-  const [showFullDescription, setShowFullDescription] = useState(false);
-  const { dispatch, item: cartItems } = useContext(CartContext);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const { data } = await axios.get(`http://localhost:4000/products/${_id}`);
-        setProduct(data);
-      } catch (error) {
-        console.error('Error fetching product:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [_id]);
+    const [mainImage, setMainImage] = useState(''); 
+    const [clickedImage, setClickedImage] = useState('');
+    const [showFullDescription, setShowFullDescription] = useState(false);
+    const { dispatch, item: cartItems } = useContext(CartContext);
+  
+    useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const { data } = await axios.get(`http://localhost:4000/products/${_id}`);
+          setProduct(data);
+          setMainImage(data.imgUrl);  // Set the main image once the product is fetched
+          setClickedImage(data.imgUrl); // Set clicked image as well
+        } catch (error) {
+          console.error('Error fetching product:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+  
+      fetchProduct();
+    }, [_id]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -54,8 +56,10 @@ const ProductDetails = () => {
   };
 
   const handleImageClick = (imgUrl) => {
-    setMainImage(imgUrl);
-    setClickedImage(imgUrl);
+    if (imgUrl !== mainImage) {
+      setMainImage(imgUrl);  // Only change the main image if it's not already the current one
+    }
+    setClickedImage(imgUrl);  // Optionally, highlight the clicked image in the alt images
   };
 
   const toggleDescription = () => {
@@ -66,24 +70,27 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <Header />
+      <Header2 />
       <div className="single-product">
-        <div className="prod-images">
-          <div className="main-image">
-            <img src={mainImage} alt={product.prod_name} />
-          </div>
-          <div className="alt-images">
-            {product.altImages.map((imgUrl, index) => (
-              <img
-                key={index}
-                src={imgUrl}
-                alt={`${product.prod_name} ${index + 1}`}
-                onClick={() => handleImageClick(imgUrl)}
-                className={clickedImage === imgUrl ? "clicked" : ""}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="prod-images">
+  <div className="main-image">
+    {/* Display the selected main image */}
+    <img src={mainImage} alt={product.prod_name} />
+  </div>
+  <div className="alt-images">
+    {/* Add the main image as part of the alt images list */}
+    {[mainImage, ...product.altImages].map((imgUrl, index) => (
+      <img
+        key={index}
+        src={imgUrl}
+        alt={`${product.prod_name} ${index + 1}`}
+        onClick={() => handleImageClick(imgUrl)} // Update the main image when clicked
+        className={clickedImage === imgUrl ? "clicked" : ""}
+      />
+    ))}
+  </div>
+</div>
+
         <div className="prod-description">
           <h1 className="product-name">{product.prod_name}</h1>
           <p className="delivery">Delivery: {product.delivery}</p>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from './Homepage';
 import Dashboard from "./components/Home_page/Dashboard";
@@ -14,6 +14,7 @@ import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import Profile from './components/Profile_Page/Profile';
 import { OrderProvider } from './components/Profile_Page/OrderContext';
+import EditSettings from "./components/Profile_Page/EditSettings";
 
 function App() {
   
@@ -35,6 +36,9 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/products/add" element={<Profile />} />
                 <Route path="/user/yourorders" element={<Profile />} /> 
+                <Route path="/user/account_settings" element={<Profile />} /> 
+                <Route path="/user/update/:_id" element={<EditSettings />} /> 
+
               </Routes>
             </OrderProvider>
           </CartProvider>

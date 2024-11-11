@@ -11,7 +11,7 @@ import { useLocation, useParams } from "react-router-dom";
 const Profile = () => {
     let { section } = useParams();
 
-    const [currentSection, setCurrentSection] = useState(section || 'Basic Info');
+    const [currentSection, setCurrentSection] = useState(section || null);
     const location = useLocation();
 
     useEffect(() => {
@@ -31,6 +31,7 @@ const Profile = () => {
                     <Sidebar setCurrentSection={setCurrentSection} currentSection={currentSection}/>                
                 </div>
                 <div className='rightside'>
+                    {currentSection === null && <AccountSettings />}
                     {currentSection === 'accountsettings' && <AccountSettings />}
                     {currentSection === 'sellprod' && <SellProd />}
                     {currentSection === 'yourorders' && <YourOrders />}
