@@ -15,6 +15,9 @@ import Profile from './components/Profile_Page/Profile';
 import { OrderProvider } from './components/Profile_Page/OrderContext';
 import EditSettings from "./components/Profile_Page/EditSettings";
 import UserProvider from "./components/Profile_Page/UserContext";
+import import EditSettings from "./components/Profile_Page/EditSettings";
+
+
 
 function App() {
   
