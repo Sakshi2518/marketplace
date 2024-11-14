@@ -7,14 +7,15 @@ import ProductDetails from './components/Shop_page/ProductDetails';
 import { Container } from 'reactstrap';
 import { CartProvider } from './components/Cart_page/CartProvider';
 import ContextCart from './components/Cart_page/ContextCart'; // Import ContextCart
-//import YourOrders from './components/Profile_Page/YourOrders'; // Import YourOrders
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 import Register from './components/Login_signup/Register';
 import Login from './components/Login_signup/Login';
 import Profile from './components/Profile_Page/Profile';
 import { OrderProvider } from './components/Profile_Page/OrderContext';
-import import EditSettings from "./components/Profile_Page/EditSettings";
+import EditSettings from "./components/Profile_Page/EditSettings";
+import UserProvider from "./components/Profile_Page/UserContext";
+import EditSettings from "./components/Profile_Page/EditSettings";
 
 
 
@@ -25,6 +26,7 @@ function App() {
    
       <Container>
         <BrowserRouter>
+          <UserProvider>
           <CartProvider>
             <OrderProvider>
               <Routes>
@@ -37,13 +39,15 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/products/add" element={<Profile />} />
-                <Route path="/user/yourorders" element={<Profile />} /> 
+                <Route path="/user/yourorders/:_id" element={<Profile />} /> 
+                <Route path="/user/youritems/:_id" element={<Profile />} /> 
                 <Route path="/user/account_settings" element={<Profile />} /> 
                 <Route path="/user/update/:_id" element={<EditSettings />} /> 
 
               </Routes>
             </OrderProvider>
           </CartProvider>
+          </UserProvider>
           <ToastContainer
             position="top-right"
             autoClose={2000}
