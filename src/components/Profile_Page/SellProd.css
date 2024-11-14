@@ -206,7 +206,6 @@ textarea::placeholder {
     padding: 5px;
     background-color: #1d1d2b;
     color: #ffffff;   
-    font-family: Work Sans;
     border-radius: 4px;
     cursor: pointer;
   }

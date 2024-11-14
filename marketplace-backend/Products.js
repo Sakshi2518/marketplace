@@ -43,8 +43,15 @@ const ProductSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
-  }
-});
+  },
+  seller: { 
+    userId : {type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User' }, // Reference to the seller
+    phoneNo : {
+      type: String
+    }
+
+} });
 
 const Products = mongoose.model('Product', ProductSchema);
 

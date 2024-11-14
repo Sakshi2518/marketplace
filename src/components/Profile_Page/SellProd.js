@@ -1,11 +1,13 @@
 import axios from "../axios";
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import "./SellProd.css"
 //import Sidebar from "./Sidebar";
 import "./Sidebar.css"
 import { Icon } from '@iconify-icon/react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AddProdModal from "./AddProdModal";
+import { UserContext } from './UserContext';
 
 const SellProd = () => {
     const [category, setCategory] = useState("Books");
@@ -18,6 +20,9 @@ const SellProd = () => {
     const [dimensions, setDimensions] = useState("");
     const [material, setMaterial] = useState("");
     const [description, setDescription] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const { userId} = useContext(UserContext);
+
 
     const handleImageChange = (e) => {
       const file = e.target.files[0];
@@ -35,9 +40,18 @@ const SellProd = () => {
   const removeImage = (index) => {
     setAltImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
+
+  const handleOpenModal = (e) => {
+    e.preventDefault();
+    if (!imgUrl || altImages.length < 3) {
+        toast.error("Please add a main image and at least 3 additional images.");
+    } else {
+        setShowModal(true);
+    }
+};
     
 
-  const addProduct = (e) => {
+  const handleConfirmProduct  = (e) => {
     e.preventDefault();
 
     if (!imgUrl || altImages.length < 3) {
@@ -56,6 +70,7 @@ const SellProd = () => {
     formData.append("description", description);
     formData.append("imgUrl", imgUrl); // add main image file
     altImages.forEach((file, index) => formData.append(`altImages`, file)); // add all alt images files
+    formData.append("userId", userId);
 
     axios
         .post("/products/add", formData, {
@@ -80,8 +95,14 @@ const SellProd = () => {
             toast.error("Make sure to fill out all the required fields!");
             console.error(error);
         });
+        setShowModal(false);
 };
-   
+  
+const handleCancelProduct = () => {
+  setShowModal(false);
+};
+
+
 
     return (
         <div className='accountsettings'>
@@ -188,7 +209,7 @@ const SellProd = () => {
                   onChange={(e) => setOrigPrice(e.target.value)}
                   value={origPrice}
                   placeholder="00"
-                />
+                /> 
               </div>
               <div className="prod-category">
               <p>Category</p>
@@ -246,34 +267,24 @@ const SellProd = () => {
               />
             </div>
             
-            <button onClick={addProduct}>Add Product</button>
-          </form>
+            <button onClick={(e) => handleOpenModal(e)}>Add Product</button>
+            </form>
         </div>
       </div>
     </div>
-            {/* <h1 className='mainhead1'>Change Password</h1>
-
-            <div className='form'>
-                <div className='form-group'>
-                    <label htmlFor='oldpass'>Old Password <span>*</span></label>
-                    <input type="password"
-                    />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='newpass'>New Password <span>*</span></label>
-                    <input type="password"
-                    />
-                </div>
-
-
-            </div>
-
-            <button className='mainbutton1'>Save Changes</button> */}
+    <AddProdModal
+                show={showModal}
+                onConfirm={handleConfirmProduct}
+                onCancel={handleCancelProduct}
+            />
             <ToastContainer hideProgressBar={true}
       />
         </div>
+        
     )
 }
+
+
+
 
 export default SellProd

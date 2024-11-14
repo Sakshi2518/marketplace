@@ -11,6 +11,7 @@ const { upload } = require("./Multer");
 
 const User = require("./Users");
 const Products = require("./Products");
+const Order = require("./Orders")
 
 const app = express();
 const port = 4000;
@@ -137,7 +138,7 @@ const verifyUser = asyncHandler(async(req, res, next) => {
 //refresh token fn
 
 // Endpoint to add product
-app.post('/products/add', verifyUser, upload.fields([
+app.post('/products/add', upload.fields([
   { name: "imgUrl", maxCount: 1 },
   { name: "altImages", maxCount: 3 }
 ]), async (req, res) => {
@@ -164,6 +165,9 @@ app.post('/products/add', verifyUser, upload.fields([
       ...productDetail,
       imgUrl: mainImageUrl,
       altImages: altImageUrls,
+      seller: {
+        userId: productDetail.userId,
+      },
     });
 
     res.status(201).send(data);
@@ -279,9 +283,284 @@ app.put(
 );
 
 
+
+app.get('/user/yourorders/:_id', async (req, res) => {
+  const { _id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(400).json({ error: "Invalid ObjectId" });
+  }
+  try {
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          buyer: new mongoose.Types.ObjectId(_id)
+        }
+      },
+      {
+        $lookup: {
+          from: 'products',
+          localField: 'product',
+          foreignField: '_id',
+          as: 'productDetails'
+        }
+      },
+      {
+        $unwind: {
+          path: '$productDetails',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'seller',
+          foreignField: '_id',
+          as: 'sellerDetails'
+        }
+      },
+      {
+        $unwind: {
+          path: '$sellerDetails',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          orderDate: 1,
+          deliveryDate: 1, // Include deliveryDate in the result
+          orderStatus: 1, // Include orderStatus if needed
+          'productDetails.prod_name': 1,
+          'productDetails.price': 1,
+          'productDetails.imgUrl': 1,
+          'productDetails.altImages': 1,
+          'sellerDetails.username': 1,
+          'sellerDetails.email': 1
+        }
+      }
+    ]);
+
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+app.get('/user/youritems/:_id', async (req, res) => {
+  const { _id } = req.params;
+
+  // Ensure valid ObjectId
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(400).json({ error: "Invalid ObjectId" });
+  }
+
+  try {
+    // Step 1: Aggregation pipeline for products
+    const products = await Products.aggregate([
+      {
+        $match: {
+          "seller.userId": new mongoose.Types.ObjectId(_id),  // Ensure proper instantiation
+        }
+      },
+      {
+        $lookup: {
+          from: 'users',  // Join with the 'users' collection to get seller details
+          localField: 'seller.userId',  // Seller's userId field in Products
+          foreignField: '_id',  // _id field in the 'users' collection
+          as: 'sellerDetails'
+        }
+      },
+      {
+        $unwind: "$sellerDetails"  // Unwind the 'sellerDetails' array to get individual seller data
+      },
+      {
+        $project: {
+          _id: 1,
+          prod_name: 1,
+          price: 1,
+          imgUrl: 1,
+          description: 1,
+          category: 1,
+          seller: {
+            username: "$sellerDetails.username",
+            email: "$sellerDetails.email"
+          }
+        }
+      }
+    ]);
+
+    // Step 2: Aggregation pipeline for orders
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          "seller": new mongoose.Types.ObjectId(_id)  // Ensure proper instantiation
+        }
+      },
+      {
+        $lookup: {
+          from: 'products',  // Join with the 'products' collection to get product details
+          localField: 'product',  // product reference in orders
+          foreignField: '_id',  // Match with _id field in the products collection
+          as: 'productDetails'
+        }
+      },
+      {
+        $unwind: "$productDetails"  // Unwind productDetails array to access individual product info
+      },
+      {
+        $lookup: {
+          from: 'users',  // Join with the 'users' collection to get buyer details
+          localField: 'buyer',  // Reference to the buyer field in orders
+          foreignField: '_id',  // Match with _id field in the users collection
+          as: 'buyerDetails'
+        }
+      },
+      {
+        $unwind: "$buyerDetails"  // Unwind the buyerDetails array to access individual buyer info
+      },
+      {
+        $project: {
+          _id: 1,
+          deliveryDate: "$productDetails.deliveryDate", // delivery date from the product field
+          isDelivered: "$productDetails.isDelivered",
+          product: {
+            prod_name: "$productDetails.prod_name",
+            price: "$productDetails.price"
+          },
+          buyer: {
+            username: "$buyerDetails.username",
+            email: "$buyerDetails.email"
+          }
+        }
+      }
+    ]);
+
+    res.status(200).json({ products, orders });
+  } catch (error) {
+    console.error("Error in fetching data:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/user/youritems/:orderId/mark-delivered', async (req, res) => {
+  const { orderId } = req.params;
+  const { productId } = req.body; // Assuming you're passing the productId in the request body
+
+  if (!productId) {
+    return res.status(400).json({ message: "Product ID is required" });
+  }
+
+  try {
+    // Find the specific order and update the isDelivered field for the product
+    const order = await Order.findOneAndUpdate(
+      { _id: orderId, 'products.product': productId },
+      { $set: { 'products.$.isDelivered': true } },
+      { new: true }
+    );
+
+    if (!order) {
+      return res.status(404).json({ message: "Order or product not found" });
+    }
+
+    res.json({ message: "Product marked as delivered", order });
+  } catch (error) {
+    console.error('Error marking product as delivered:', error);
+    res.status(500).json({ message: "Failed to update product status" });
+  }
+});
+
+
+
+app.put('/user/update-delivery-date/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { productId, deliveryDate } = req.body;  // Now also accepting productId and deliveryDate in the request body
+
+    // Validate that deliveryDate and productId are provided
+    if (!productId || !deliveryDate) {
+      return res.status(400).json({ message: 'Product ID and delivery date are required' });
+    }
+
+    // Find the order by orderId
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    // Find the product in the order's products array
+    const productIndex = order.products.findIndex(product => product.product.toString() === productId);
+
+    // If the product is not found in the order
+    if (productIndex === -1) {
+      return res.status(404).json({ message: 'Product not found in this order' });
+    }
+
+    // Update the delivery date for the specific product
+    order.products[productIndex].deliveryDate = new Date(deliveryDate);
+
+    // Save the updated order
+    await order.save();
+
+    // Respond with success message and updated order data
+    res.status(200).json({ message: 'Delivery date updated successfully', order });
+  } catch (error) {
+    console.error('Error updating delivery date:', error.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+
 // Dashboard authorization
 app.get('/dashboard', verifyUser, (req, res) => {
   res.json({ valid: true, message: "Authorized" });
 });
+
+
+
+app.put('/user/update-delivery-date/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { productId, deliveryDate } = req.body;
+
+    console.log('Order ID:', orderId);
+    console.log('Product ID:', productId);
+    console.log('Delivery Date:', deliveryDate);
+
+    // Validate that deliveryDate and productId are provided
+    if (!productId || !deliveryDate) {
+      return res.status(400).json({ message: 'Product ID and delivery date are required' });
+    }
+
+    // Find the order by orderId
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    // Find the product in the order's products array
+    const productIndex = order.products.findIndex(product => product.product.toString() === productId);
+
+    if (productIndex === -1) {
+      return res.status(404).json({ message: 'Product not found in this order' });
+    }
+
+    // Update the delivery date for the specific product
+    order.products[productIndex].deliveryDate = new Date(deliveryDate);
+
+    // Save the updated order
+    await order.save();
+
+    res.status(200).json({ message: 'Delivery date updated successfully', order });
+  } catch (error) {
+    console.error('Error updating delivery date:', error.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+
+
 
 app.listen(port, () => console.log("Listening on port", port));
