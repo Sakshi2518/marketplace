@@ -24,6 +24,8 @@ const SellProd = () => {
     const { userId} = useContext(UserContext);
 
 
+
+
     const handleImageChange = (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -59,6 +61,11 @@ const SellProd = () => {
         return;
     }
 
+    if(!userId){
+      toast.error("Login to add product")
+      return;
+    }
+    const currentDate = new Date().toISOString();
     const formData = new FormData();
     formData.append("category", category);
     formData.append("condition", condition);
@@ -71,7 +78,7 @@ const SellProd = () => {
     formData.append("imgUrl", imgUrl); // add main image file
     altImages.forEach((file, index) => formData.append(`altImages`, file)); // add all alt images files
     formData.append("userId", userId);
-
+    formData.append("dateOfProd", currentDate);
     axios
         .post("/products/add", formData, {
             headers: { "Content-Type": "multipart/form-data" }

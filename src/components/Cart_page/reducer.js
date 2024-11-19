@@ -36,6 +36,12 @@ export const reducer = (state, action) => {
             : item
         ),
       };
+      case "CLEAR_CART":
+      return {
+        ...state,
+        item: [],
+        totalAmount: 0,
+      };
 
     default:
       return state;

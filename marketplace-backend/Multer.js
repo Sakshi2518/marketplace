@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
     cb(null, './public/temp'); // specify the temp folder to store files temporarily
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // use original file name
+    cb(null, Date.now() + '-' + file.originalname); // use original file name
   }
 });
 

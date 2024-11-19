@@ -1,97 +1,98 @@
 /* Existing styles */
-
-.userE-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    font-family: Nunito;
-  }
-  
-  .userE-heading {
-    padding-top: 70px;
-    font-family: Montserrat;
-    font-size: 25px;
-  }
-  
-  .userE-flex {
-    margin-bottom: 15px;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    align-items: center;
-  }
-
-  .userE-flex-pfp{
-    margin-bottom: 18px;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .userE-flex p {
-    margin: 0;
-    font-size: 16px;
-    width: 50%; /* Adjust width as needed */
-    text-align: left; /* Aligns text to the right */
-    padding-right: 10px; /* Space between label and input */
-  }
-  
-  .userE-input{ /* Apply the same styles to both input and select */
-    width: 70%; /* Adjust width to balance with label */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: Nunito; /* Ensure font consistency */
-    font-size: 16px; /* Match font size of input */
-  }
-
-  .userE-prod-ip{
-    width: 70%; 
-    padding: 6px;
-    border-radius: 4px;
-    border: none ;
-    box-sizing: border-box;
-    font-family: Nunito; /* Ensure font consistency */
-    font-size: 16px; 
-  }
-  
-  .userE-btn {
-    background-color:  #1d1d2b;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: Montserrat;
-  }
-  
-.userE-btn:hover {
-    background-color: #494968;
-  }
-  
-  .edit-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center !important;
-  }
-
-
-  .userE-img {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 2px;
-    gap: 3.3rem !important;
-    margin-left: 7.09rem;
-  }
-  
-
-
+.userE-background {
+  background-color: #e8f1f8; /* Light blue shade */
  
-  
+  padding: 2px; /* Add some spacing around the edges */
+}
+/* General form container */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  border: 2px solid #c9daee; /* Subtle blue border */
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(126, 154, 186, 0.15); /* Subtle shadow */
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto; /* Center the form with margin */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.edit-form:hover {
+  box-shadow: 0 6px 25px rgba(126, 154, 186, 0.25); /* Slightly stronger shadow on hover */
+}
+
+/* Heading */
+.userE-heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4f6782; /* Blue text color */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form inputs */
+.userE-flex,
+.userE-flex-pfp {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.userE-flex p,
+.userE-flex-pfp p {
+  font-size: 16px;
+  color: #4f6782;
+  margin: 0;
+  width: 40%; /* Adjust label width */
+  text-align: left;
+  padding-right: 10px; /* Spacing between label and input */
+}
+
+.userE-input,
+.userE-prod-ip {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+  color: #555555;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.userE-input:focus,
+.userE-prod-ip:focus {
+  border-color: #083361; /* Subtle blue border on focus */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3); /* Light glow on focus */
+}
+
+/* Button styles */
+.userE-btn {
+  background-color: #4f6782;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.userE-btn:hover {
+  background-color: #6d87a0;
+}
+
+/* Additional adjustments */
+.userE-details {
+  width: 100%;
+}
+

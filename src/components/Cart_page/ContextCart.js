@@ -10,12 +10,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmationModal from "./Modal";
 import { OrderContext } from "../Profile_Page/OrderContext.js";
+import {UserContext} from "../Profile_Page/UserContext.js";
+import emptycart from '../../images/emptycart.png'
 
 const ContextCart = () => {
-  const { item, totalAmount } = useContext(CartContext);
+  const { item, totalAmount, dispatch } = useContext(CartContext);
   const { setOrderDetails } = useContext(OrderContext); // Get setOrderDetails from OrderContext
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const { userId } = useContext(UserContext);
+
 
   const handleCheckout = () => {
     if (item.length === 0) {
@@ -24,21 +28,55 @@ const ContextCart = () => {
       setShowModal(true);
     }
   };
-
-  const handleConfirm = () => {
+  console.log("UserId:" , userId)
+  const handleConfirm = async () => {
     setShowModal(false);
-    toast.success("Your order has been confirmed! Check order details.", {
-      onClose: () => {
-        const userId = "currentUserId"; // Replace with actual user ID
-        const userEmail = "currentUserEmail@example.com"; // Replace with actual user email
-        const checkoutTime = Date.now();
+    if (!userId) {
+      toast.error("User not logged in");
+      return;
+    }
+  
+    if (item.length === 0) {
+      toast.error("Your cart is empty!");
+      return;
+    }
+  
+    const orderData = {
+      buyerId: userId, 
+      orderDate: Date.now(),
+      items: item.map(currItem => ({
+        product: currItem._id,
+        isOrdered : true,
+      })),
+      totalAmount: totalAmount,
+      sellerId: item[0]?.seller?.userId || null,
+    };
 
-        setOrderDetails({ items: item, userId, userEmail, checkoutTime });
-
-        navigate("/profile");
-      },
-    });
+    console.log("Order Data" , orderData);
+  
+    try {
+      const response = await fetch("http://localhost:4000/orders/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Order placed successfully!");
+        dispatch({ type: "CLEAR_CART" });
+        navigate(`/user/yourorders/${userId}`); 
+      } else {
+        toast.error(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error placing order");
+    }
   };
+  
 
   const handleCancel = () => {
     setShowModal(false);
@@ -79,7 +117,10 @@ const ContextCart = () => {
                   </tbody>
                 </table>
               ) : (
-                <p>Your cart is empty</p>
+                <div className="empty-cart-div">
+                  <p>Your cart is empty!
+                  Visit our shop and fill it with your favorites.</p>
+                  <img src={emptycart} className="empty-cart"/></div>
               )}
             </div>
           </div>
@@ -106,7 +147,7 @@ const ContextCart = () => {
         </div>
       </section>
       <ConfirmationModal
-        show={showModal}
+        show={showModal} 
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />

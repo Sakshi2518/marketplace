@@ -63,3 +63,24 @@
   margin-bottom: 20px;
   font-family: "Work Sans", sans-serif;
 }
+
+.save-deldate{
+  background-color: #1d1d2b;
+  color: white;
+}
+
+.change-deldate{
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+.empty-items-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+  align-items: center;
+  font-family: Klee one;
+  color: rgb(161, 160, 160);
+}

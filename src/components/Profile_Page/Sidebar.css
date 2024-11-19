@@ -1,120 +1,152 @@
 .usersidebar {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-pic-container {
-  position: relative;
-  display: inline-block;
-  /* width: 100px; Adjust size as needed */
-  /* height: 100px; */
-  border-radius: 50%;
-  overflow: hidden;
+position: relative;
+width: 200px; /* Adjust size of the circle */
+height: 200px; /* Adjust size of the circle */
+border-radius: 50%;
+overflow: hidden;
+margin: 20px; /* Gap between circle and other content */
+margin-left: 28px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #f1f1f1; /* Optional background color for the container */
 }
 
 .profpic {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures the image fills the circle */
+object-position: center; /* Centers the image within the circle */
+}
+.add-btn {
+  position: absolute;
+  bottom: 32px; /* Adjust for proper placement */
+  right: 20px; /* Align to the corner */
+  width: 40px;
+  height: 40px;
+  border-radius: 20%;
+  background-color:rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#333;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: white;
+}
+.add-btn svg {
+width: 18px; /* Set the width */
+height: 18px; /* Set the height */
 }
 
 .profile-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  backdrop-filter: blur(4px);
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: white;
+opacity: 0;
+transition: opacity 0.3s ease;
+backdrop-filter: blur(4px);
 }
 
 .profile-pic-container:hover .profile-overlay {
-  opacity: 1;
+opacity: 1;
+}
+.icon-btn {
+width: 40px;
+height: 40px;
+border-radius: 20%;
+background-color: rgba(255, 255, 255, 0.7);
+display: flex;
+justify-content: center;
+align-items: center;
+color: #333;
+border: none;
+margin: 5px;
+cursor: pointer;
 }
 
-.overlay-btn {
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  padding: 5px 10px;
-  margin: 5px 0;
-  color: #333;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.2s ease;
+.icon-btn:hover {
+background-color: white;
 }
 
-.overlay-btn:hover {
-  background-color: #fff;
-}
 
 .usersidebar .s1 , .usersidebar .s2{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
 }
 
 
 
 .usersidebar .s1:hover{
-    background-color: #dfe9f5a1;
-    border-radius: 5px;
-    cursor: pointer;
-    color: black;
+  background-color: #dfe9f5a1;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
 }
 
 
 .usersidebar .s2{
-    background-color: var(--col1);
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #34344D;
-    color: white;
+  background-color: var(--col1);
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #34344D;
+  color: white;
 }
 @media (max-width: 800px) {
-    .usersidebar span{
-        font-size: 12px;
-    }
+  .usersidebar span{
+      font-size: 12px;
+  }
 }
 @media (max-width: 500px) {
-    .usersidebar {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        padding: 10px;
-    }
-    .usersidebar .s1 , .usersidebar .s2{
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        padding: 3px;
-    }
-    .usersidebar .s1{
-        background-color: white;
-        border-radius: 25px;
-        cursor: pointer;
-        box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
-        padding: 5px 20px;
-    }
-    .usersidebar .s2{
-        border-radius: 25px;
-        cursor: pointer;
-        box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
-        padding: 5px 20px;
- 
-    }
-    .usersidebar span{
-        font-size: 12px;
-    }
+  .usersidebar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 10px;
+  }
+  .usersidebar .s1 , .usersidebar .s2{
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+  }
+  .usersidebar .s1{
+      background-color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
+      padding: 5px 20px;
+  }
+  .usersidebar .s2{
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
+      padding: 5px 20px;
+
+  }
+  .usersidebar span{
+      font-size: 12px;
+  }
 }

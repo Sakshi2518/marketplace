@@ -179,6 +179,24 @@
   padding-right: 40px;
 }
 
+.empty-cart{
+  border: none !important;
+  align-self: center;
+  height: 220px;
+}
+
+.empty-cart-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+  align-items: center;
+  font-family: Klee one;
+  color: rgb(161, 160, 160);
+}
+
+
 @media (max-width: 768px) {
   .cart-and-summary {
     flex-direction: column;

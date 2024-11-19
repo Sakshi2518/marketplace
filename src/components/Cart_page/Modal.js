@@ -14,7 +14,7 @@ const ConfirmationModal = ({ show, onConfirm, onCancel }) => {
         <button onClick={onConfirm}>Yes</button>
         <button onClick={onCancel}>No</button>
       </div>
-    </div>
+    </div> 
   );
 };
 

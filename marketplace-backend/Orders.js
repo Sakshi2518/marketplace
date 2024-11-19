@@ -11,7 +11,7 @@ const orderSchema = new mongoose.Schema({
   },
   orderDate: {
     type: Date,
-    default: Date.now // Automatically set the order date when the order is created
+    default: Date.now 
   },
   products: [{
     product: {
@@ -21,6 +21,14 @@ const orderSchema = new mongoose.Schema({
     deliveryDate: {
       type: Date, // Delivery date specific to this product
       default: null // Initially null, can be updated later
+    },
+    isDelivered:{
+        type: Boolean,
+        default: false
+    },
+    isOrdered:{
+      type: Boolean,
+      default: false
     }
   }]
 });
