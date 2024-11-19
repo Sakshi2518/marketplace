@@ -20,34 +20,21 @@ const AccountSettings = () => {
 
   const fetchUserProfile = async () => {
     try {
-      // Retrieve token from localStorage (or wherever you store it)
-      const token = localStorage.getItem('token');
-      console.log(token)
-      
-      if (!token) {
-        throw new Error('Token not found, please log in again');
-      }
-      
-      console.log('Request Headers:', {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      });
-      
-      const response = await fetch('http://localhost:4000/user/profile', {
-        method: 'GET',
+      const response = await fetch("http://localhost:4000/user/profile", {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`  // Attach the token here
+          "Content-Type": "application/json",
         },
-        credentials: 'include', // This ensures cookies are sent as well (if any)
+        credentials: "include", // Ensure cookies are sent automatically
       });
-      console.log(response.headers)
+
+      console.log(response.headers);
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText);
       }
-  
+
       const userData = await response.json();
       setName(userData.username);
       setEmail(userData.email);
@@ -57,9 +44,9 @@ const AccountSettings = () => {
       setAddress(userData.address);
       setDOB(userData.DOB);
       setUserId(userData._id);
-      console.log('User data fetched successfully:', userData);
+      console.log("User data fetched successfully:", userData);
     } catch (error) {
-      console.error('Error fetching user data:', error.message);
+      console.error("Error fetching user data:", error.message);
     }
   };
   

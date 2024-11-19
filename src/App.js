@@ -19,6 +19,8 @@ import EditSettings from "./components/Profile_Page/EditSettings";
 
 
 
+
+
 function App() {
   
   
@@ -37,7 +39,7 @@ function App() {
                 <Route path="/products/:_id" element={<ProductDetails/>} />
                 <Route path="/signup" element={<Register/>} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/user/profile" element={<Profile />} />
                 <Route path="/products/add" element={<Profile />} />
                 <Route path="/user/yourorders/:_id" element={<Profile />} /> 
                 <Route path="/user/youritems/:_id" element={<Profile />} /> 

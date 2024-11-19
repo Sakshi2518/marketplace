@@ -23,7 +23,7 @@ function ShopMain() {
         setProducts(data);
       } catch (error) {
         setError(error.message);
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data: Kindly login to view Products", error);
       }
     };
     fetchData();
@@ -50,7 +50,7 @@ function ShopMain() {
   const sortingProducts = (a, b) => {
     if (sortingValue === "Newly added") {
       return (
-        new Date(b.dateOfProd).getTime() - new Date(a.dateOfProd).getTime()
+        new Date(a.dateOfProd).getTime() - new Date(b.dateOfProd).getTime()
       );
     }
     if (sortingValue === "lowest") {

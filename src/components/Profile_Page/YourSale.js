@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './YourSale.css'
 import './YourOrders.css'
 import OrderStatus from './OrderStatus';
+import { Icon } from '@iconify-icon/react';
+import emptyitems from '../../images/emptyitem.png'
 
 const YourSale = () => {
   const { _id } = useParams();  // Accessing _id from the route params
@@ -31,18 +33,19 @@ const YourSale = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [currentOrderId, setCurrentOrderId] = useState(null);
+  const[currentProductId , setCurrentProductId]= useState(null);
 
   const handleConfirmDelivery = async () => {
-    // Update the order status to 'Delivered'
-    if (currentOrderId) {
+
+    if (currentOrderId && currentProductId) {
       try {
         const response = await fetch(`http://localhost:4000/user/yourorders/${currentOrderId}/mark-delivered`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: currentProductId }), // Pass the productId here
         });
-
+  
         if (response.ok) {
-          // Optional: Refresh the orders list or update state
           window.location.reload(); // This reloads the page to show updated orders
         }
       } catch (error) {
@@ -51,14 +54,15 @@ const YourSale = () => {
     }
     setShowModal(false); // Close the modal after confirming
   };
-
+  
   const handleCancelDelivery = () => {
     setShowModal(false);
     setCurrentOrderId(null);
   };
 
-  const handleOpenModal = (orderId) => {
+  const handleOpenModal = (orderId , productId) => {
     setCurrentOrderId(orderId);
+    setCurrentProductId(productId); 
     setShowModal(true);
   };
 
@@ -75,11 +79,15 @@ const YourSale = () => {
   };
 
   const handleSaveDeliveryDate = async (orderId, productId) => {
-    if (!productId || !newDeliveryDate) {
-      console.error('Product ID or delivery date is missing');
+    if (!productId) {
+      console.error('Product ID is missing');
       return;
     }
-
+    
+    if (!newDeliveryDate) {
+      console.error('Delivery date is missing');
+      return;
+    }
     try {
       // Convert newDeliveryDate to an ISO string format (YYYY-MM-DDTHH:MM:SSZ)
       const formattedDate = new Date(newDeliveryDate).toISOString();
@@ -129,7 +137,10 @@ const YourSale = () => {
           ))}
         </div>
       ) : (
-        <p>No products found.</p>
+        <div className='empty-items-div'>
+        <p> No items yet? </p>
+        <p> Head over to Sell Products and showcase your products today!</p>
+        <img src={emptyitems} className='empty-items'/> </div>
       )}
     </div>
   
@@ -140,12 +151,12 @@ const YourSale = () => {
   <table className="orders-table">
     <thead> 
       <tr>
-        <th className='orders-page-th'>Status</th>
+        <th className='orders-page-th'>Order Status</th>
         <th className='orders-page-th'>Product Name</th>
         <th className='orders-page-th'>Ordered By</th>
         <th className='orders-page-th'>Order Date</th>
         <th className='orders-page-th'>Delivery Date</th>
-        <th className='orders-page-th'>Action</th>
+        <th className='orders-page-th'>Change Date</th>
 
       </tr>
     </thead>
@@ -153,15 +164,22 @@ const YourSale = () => {
     {orders.map((order) => (
         <tr key={order._id} className="orders-page-tr">
           <td className="orders-page-td">
-            {order.isDelivered ? (
-              <span className="delivered-status">Delivered</span>
+            {order.products?.isDelivered ? (
+              <span className="orders-page-td">Delivered</span>
             ) : (
-              <button onClick={() => handleOpenModal(order._id)}>
-                Mark as Delivered
+              <button onClick={() => handleOpenModal(order._id ,order.products?.product._id)} className='change-deldate'>
+                <Icon icon="fluent:box-checkmark-24-regular" width="24" height="24"  style={{color: '#1d1d2b'}} />
               </button>
             )}
           </td>
-          <td className="orders-page-td">{order.product?.prod_name}</td>
+          <td className="orders-page-td">
+              {order.products && order.products.product ? (
+                <Link to={`/products/${order.products?.product._id}`}>
+                <div>{order.products.product.prod_name}</div> </Link>
+              ) : (
+                <span>No products available</span>
+              )}
+            </td>
           <td className="orders-page-td">
             {order.buyer?.username} <br />({order.buyer?.email})
           </td>
@@ -169,13 +187,13 @@ const YourSale = () => {
             {new Date(order.orderDate).toLocaleDateString()}
           </td>
           <td className="orders-page-td">
-            {order.deliveryDate ? (
-              <span>{new Date(order.deliveryDate).toLocaleDateString()}</span>
+            {order.products.deliveryDate ? (
+              <span>{new Date(order.products.deliveryDate).toLocaleDateString()}</span>
             ) : (
               <span>Pending</span>
             )}
           </td>
-          <td>
+          <td className='orders-page-td'>
             {isEditing && isEditing.orderId === order._id ? (
               <>
                 <input
@@ -183,13 +201,13 @@ const YourSale = () => {
                   value={newDeliveryDate}
                   onChange={(e) => setNewDeliveryDate(e.target.value)}
                 />
-                <button onClick={() => handleSaveDeliveryDate(order._id, order.product?._id)}>
+                <button onClick={() => handleSaveDeliveryDate(order._id, order.products?.product._id)} className='save-deldate'>
                   Save
                 </button>
               </>
             ) : (
-              <button onClick={() => handleDeliveryDateChange(order._id, order.product?._id, order.deliveryDate)}>
-                Edit Delivery Date
+              <button onClick={() => handleDeliveryDateChange(order._id, order.products?.product._id, order.deliveryDate)} className='change-deldate'>
+                    <Icon icon="tabler:edit" width="24" height="24"  style={{ color: '#1d1d2b' }} />
               </button>
             )}
           </td>
@@ -198,7 +216,8 @@ const YourSale = () => {
     </tbody>
   </table>
 ) : (
-  <p>No orders found.</p>
+  <span className='empty-items-div'>No orders yet.
+Your products are waiting for their first customer.</span>
 )}
 <OrderStatus
         show={showModal}

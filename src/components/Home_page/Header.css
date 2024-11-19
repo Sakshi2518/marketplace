@@ -65,12 +65,33 @@
   align-items: center;
 }
 
+.profile-img-nav {
+  width: 30px !important; /* Adjust size as needed */
+  height: 30px !important; /* Adjust size as needed */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  border: 2px solid  #d0d7e7; /* Optional: adds a border around the image */
+  margin: 6px 8px 0px 0px; /* Adds some space on the left */
+}
+
 .auth-button {
   padding: 8px 15px;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #007bff;
+  background-color: #1d1d2b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button-logout {
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color:  #1d1d2b;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -78,7 +99,7 @@
 }
 
 .auth-button:hover {
-  background-color: #0056b3;
+  background-color:#1d1d2b ;
 }
 
 .auth-button:focus {
